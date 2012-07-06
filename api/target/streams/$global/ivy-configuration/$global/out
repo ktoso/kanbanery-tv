@@ -1,0 +1,132 @@
+[0m[[0mdebug[0m] [0mOther repositories:[0m
+[0m[[0mdebug[0m] [0mDefault repositories:[0m
+[0m[[0mdebug[0m] [0m	Raw(ProjectResolver(inter-project, mapped: pl.project13#protos_2.9.1;0.2, pl.project13#push-xmpp_2.9.1;0.2))[0m
+[0m[[0mdebug[0m] [0m	FileRepository(local,FileConfiguration(true,None),sbt.Patterns@3021dfa1)[0m
+[0m[[0mdebug[0m] [0m	FileRepository(local,FileConfiguration(true,None),sbt.Patterns@150858bb)[0m
+[0m[[0mdebug[0m] [0m	Sonatype releases: http://oss.sonatype.org/content/repositories/releases/[0m
+[0m[[0mdebug[0m] [0m	Typesafe Releases: http://repo.typesafe.com/typesafe/releases[0m
+[0m[[0mdebug[0m] [0m	Twitter Releases: http://maven.twttr.com/[0m
+[0m[[0mdebug[0m] [0m	Tinkerprop: http://tinkerpop.com/maven2[0m
+[0m[[0mdebug[0m] [0m	Neo4j Public Releases: http://m2.neo4j.org/content/repositories/releases[0m
+[0m[[0mdebug[0m] [0m	SoftwareMill Releases: http://tools.softwaremill.pl/nexus/content/repositories/releases[0m
+[0m[[0mdebug[0m] [0m	SoftwareMill Snapshots: http://tools.softwaremill.pl/nexus/content/repositories/snapshots[0m
+[0m[[0mdebug[0m] [0m	public: http://repo1.maven.org/maven2/[0m
+[0m[[0mdebug[0m] [0m	sbt-idea-repo: http://mpeltonen.github.com/maven/[0m
+[0m[[0mdebug[0m] [0m	public: http://repo1.maven.org/maven2/[0m
+[0m[[0mdebug[0m] [0mUsing inline dependencies specified in Scala.[0m
+[0m[[0minfo[0m] [0mResolving pl.project13#protos_2.9.1;0.2 ...[0m
+[0m[[0minfo[0m] [0mResolving org.scala-lang#scala-library;2.9.1 ...[0m
+[0m[[0minfo[0m] [0mResolving com.weiglewilczek.slf4s#slf4s_2.9.1;1.0.7 ...[0m
+[0m[[0minfo[0m] [0mResolving ch.qos.logback#logback-classic;1.0.0 ...[0m
+[0m[[0minfo[0m] [0mResolving ch.qos.logback#logback-core;1.0.0 ...[0m
+[0m[[0minfo[0m] [0mResolving org.slf4j#slf4j-api;1.6.4 ...[0m
+[0m[[0minfo[0m] [0mResolving com.google.guava#guava;12.0 ...[0m
+[0m[[0minfo[0m] [0mResolving com.google.code.findbugs#jsr305;1.3.9 ...[0m
+[0m[[0minfo[0m] [0mResolving com.google.protobuf#protobuf-java;2.4.1 ...[0m
+[0m[[0minfo[0m] [0mResolving com.sun.jersey#jersey-client;1.9 ...[0m
+[0m[[0minfo[0m] [0mResolving com.github.mpeltonen#sbt-idea;1.0.0 ...[0m
+[0m[[0minfo[0m] [0mResolving commons-io#commons-io;2.0.1 ...[0m
+[0m[[0minfo[0m] [0mResolving pl.project13#push-xmpp_2.9.1;0.2 ...[0m
+[0m[[0minfo[0m] [0mResolving com.typesafe.akka#akka-actor;2.0 ...[0m
+[0m[[0minfo[0m] [0mResolving com.typesafe.akka#akka-slf4j;2.0 ...[0m
+[0m[[0minfo[0m] [0mResolving com.sun.jersey#jersey-grizzly;1.9.1 ...[0m
+[0m[[0minfo[0m] [0mResolving com.sun.grizzly#grizzly-servlet-webserver;1.9.18-i ...[0m
+[0m[[0minfo[0m] [0mResolving com.sun.grizzly#grizzly-http;1.9.18-i ...[0m
+[0m[[0minfo[0m] [0mResolving com.sun.grizzly#grizzly-framework;1.9.18-i ...[0m
+[0m[[0minfo[0m] [0mResolving com.sun.grizzly#grizzly-utils;1.9.18-i ...[0m
+[0m[[0minfo[0m] [0mResolving com.sun.grizzly#grizzly-rcm;1.9.18-i ...[0m
+[0m[[0minfo[0m] [0mResolving com.sun.grizzly#grizzly-portunif;1.9.18-i ...[0m
+[0m[[0minfo[0m] [0mResolving com.sun.grizzly#grizzly-http-servlet;1.9.18-i ...[0m
+[0m[[0minfo[0m] [0mResolving javax.servlet#servlet-api;2.5 ...[0m
+[0m[[0minfo[0m] [0mResolving com.sun.jersey#jersey-server;1.9 ...[0m
+[0m[[0minfo[0m] [0mResolving com.foursquare#rogue_2.9.1;1.1.8 ...[0m
+[0m[[0minfo[0m] [0mResolving net.liftweb#lift-mongodb-record_2.9.1;2.4 ...[0m
+[0m[[0minfo[0m] [0mResolving net.liftweb#lift-record_2.9.1;2.4 ...[0m
+[0m[[0minfo[0m] [0mResolving net.liftweb#lift-proto_2.9.1;2.4 ...[0m
+[0m[[0minfo[0m] [0mResolving net.liftweb#lift-webkit_2.9.1;2.4 ...[0m
+[0m[[0minfo[0m] [0mResolving commons-fileupload#commons-fileupload;1.2.2 ...[0m
+[0m[[0minfo[0m] [0mResolving net.liftweb#lift-util_2.9.1;2.4 ...[0m
+[0m[[0minfo[0m] [0mResolving commons-codec#commons-codec;1.4 ...[0m
+[0m[[0minfo[0m] [0mResolving nu.validator.htmlparser#htmlparser;1.2.1 ...[0m
+[0m[[0minfo[0m] [0mResolving javax.mail#mail;1.4.4 ...[0m
+[0m[[0minfo[0m] [0mResolving javax.activation#activation;1.1 ...[0m
+[0m[[0minfo[0m] [0mResolving joda-time#joda-time;1.6.2 ...[0m
+[0m[[0minfo[0m] [0mResolving net.liftweb#lift-actor_2.9.1;2.4 ...[0m
+[0m[[0minfo[0m] [0mResolving net.liftweb#lift-common_2.9.1;2.4 ...[0m
+[0m[[0minfo[0m] [0mResolving net.liftweb#lift-json_2.9.1;2.4 ...[0m
+[0m[[0minfo[0m] [0mResolving com.thoughtworks.paranamer#paranamer;2.3 ...[0m
+[0m[[0minfo[0m] [0mResolving org.scala-lang#scalap;2.9.1 ...[0m
+[0m[[0minfo[0m] [0mResolving org.scala-lang#scala-compiler;2.9.1 ...[0m
+[0m[[0minfo[0m] [0mResolving net.liftweb#lift-db_2.9.1;2.4 ...[0m
+[0m[[0minfo[0m] [0mResolving net.liftweb#lift-mongodb_2.9.1;2.4 ...[0m
+[0m[[0minfo[0m] [0mResolving org.mongodb#mongo-java-driver;2.6.5 ...[0m
+[0m[[0minfo[0m] [0mResolving net.liftweb#lift-json-ext_2.9.1;2.4 ...[0m
+[0m[[0minfo[0m] [0mResolving org.igniterealtime.smack#smack;3.2.1 ...[0m
+[0m[[0minfo[0m] [0mResolving org.igniterealtime.smack#smackx;3.2.1 ...[0m
+[0m[[0minfo[0m] [0mResolving com.amazonaws#aws-java-sdk;1.3.8 ...[0m
+[0m[[0minfo[0m] [0mResolving commons-logging#commons-logging;[1.1, 2.0) ...[0m
+[0m[[0minfo[0m] [0mResolving org.apache.httpcomponents#httpclient;[4.1, 5.0) ...[0m
+[0m[[0minfo[0m] [0mResolving org.apache.httpcomponents#httpcore;4.2.1 ...[0m
+[0m[[0minfo[0m] [0mResolving commons-codec#commons-codec;1.6 ...[0m
+[0m[[0minfo[0m] [0mResolving org.codehaus.jackson#jackson-core-asl;[1.8,) ...[0m
+[0m[[0minfo[0m] [0mResolving org.codehaus.jackson#jackson-mapper-asl;[1.8,) ...[0m
+[0m[[0minfo[0m] [0mResolving joda-time#joda-time;2.1 ...[0m
+[0m[[0minfo[0m] [0mResolving org.joda#joda-convert;1.2 ...[0m
+[0m[[0minfo[0m] [0mResolving org.mongodb#mongo-java-driver;2.7.3 ...[0m
+[0m[[0minfo[0m] [0mResolving org.neo4j#neo4j;1.8.M01 ...[0m
+[0m[[0minfo[0m] [0mResolving org.neo4j#neo4j-kernel;1.8.M01 ...[0m
+[0m[[0minfo[0m] [0mResolving org.apache.geronimo.specs#geronimo-jta_1.1_spec;1.1.1 ...[0m
+[0m[[0minfo[0m] [0mResolving org.neo4j#neo4j-lucene-index;1.8.M01 ...[0m
+[0m[[0minfo[0m] [0mResolving org.apache.lucene#lucene-core;3.5.0 ...[0m
+[0m[[0minfo[0m] [0mResolving org.neo4j#neo4j-graph-algo;1.8.M01 ...[0m
+[0m[[0minfo[0m] [0mResolving org.neo4j#neo4j-udc;1.8.M01 ...[0m
+[0m[[0minfo[0m] [0mResolving org.neo4j#neo4j-graph-matching;1.8.M01 ...[0m
+[0m[[0minfo[0m] [0mResolving org.neo4j#neo4j-cypher;1.8.M01 ...[0m
+[0m[[0minfo[0m] [0mResolving org.neo4j#neo4j-jmx;1.8.M01 ...[0m
+[0m[[0minfo[0m] [0mResolving org.neo4j.app#neo4j-server;1.8.M01 ...[0m
+[0m[[0minfo[0m] [0mResolving org.neo4j.app#neo4j-server-static-web;1.8.M01 ...[0m
+[0m[[0minfo[0m] [0mResolving com.sun.jersey#jersey-core;1.9 ...[0m
+[0m[[0minfo[0m] [0mResolving org.neo4j#neo4j-scala;0.2.0-SNAPSHOT ...[0m
+[0m[[0minfo[0m] [0mResolving org.neo4j#neo4j-shell;1.8.M01 ...[0m
+[0m[[0minfo[0m] [0mResolving org.apache.servicemix.bundles#org.apache.servicemix.bundles.jline;0.9.94_1 ...[0m
+[0m[[0minfo[0m] [0mResolving junit#junit;4.10 ...[0m
+[0m[[0minfo[0m] [0mResolving org.hamcrest#hamcrest-core;1.1 ...[0m
+[0m[[0minfo[0m] [0mResolving org.neo4j#sever-api;1.8.M01 ...[0m
+[0m[[0minfo[0m] [0mResolving commons-configuration#commons-configuration;1.8 ...[0m
+[0m[[0minfo[0m] [0mResolving commons-lang#commons-lang;2.6 ...[0m
+[0m[[0minfo[0m] [0mResolving org.mortbay.jetty#jetty;6.1.25 ...[0m
+[0m[[0minfo[0m] [0mResolving org.mortbay.jetty#jetty-util;6.1.25 ...[0m
+[0m[[0minfo[0m] [0mResolving org.mortbay.jetty#servlet-api;2.5-20081211 ...[0m
+[0m[[0minfo[0m] [0mResolving org.rrd4j#rrd4j;2.0.7 ...[0m
+[0m[[0minfo[0m] [0mResolving org.codehaus.groovy#groovy;1.8.5 ...[0m
+[0m[[0minfo[0m] [0mResolving antlr#antlr;2.7.7 ...[0m
+[0m[[0minfo[0m] [0mResolving asm#asm;3.2 ...[0m
+[0m[[0minfo[0m] [0mResolving asm#asm-commons;3.2 ...[0m
+[0m[[0minfo[0m] [0mResolving asm#asm-tree;3.2 ...[0m
+[0m[[0minfo[0m] [0mResolving asm#asm-util;3.2 ...[0m
+[0m[[0minfo[0m] [0mResolving asm#asm-analysis;3.2 ...[0m
+[0m[[0minfo[0m] [0mResolving com.tinkerpop.gremlin#gremlin-groovy;1.5 ...[0m
+[0m[[0minfo[0m] [0mResolving com.tinkerpop.gremlin#gremlin-java;1.5 ...[0m
+[0m[[0minfo[0m] [0mResolving com.tinkerpop.blueprints#blueprints-core;1.2 ...[0m
+[0m[[0minfo[0m] [0mResolving org.codehaus.jettison#jettison;1.3 ...[0m
+[0m[[0minfo[0m] [0mResolving stax#stax-api;1.0.1 ...[0m
+[0m[[0minfo[0m] [0mResolving org.codehaus.jackson#jackson-jaxrs;1.8.5 ...[0m
+[0m[[0minfo[0m] [0mResolving com.tinkerpop#pipes;1.0 ...[0m
+[0m[[0minfo[0m] [0mResolving org.fusesource.jansi#jansi;1.5 ...[0m
+[0m[[0minfo[0m] [0mResolving jline#jline;0.9.94 ...[0m
+[0m[[0minfo[0m] [0mResolving com.tinkerpop.blueprints#blueprints-neo4j-graph;1.2 ...[0m
+[0m[[0minfo[0m] [0mResolving org.neo4j#neo4j-ha;1.6.1 ...[0m
+[0m[[0minfo[0m] [0mResolving org.neo4j#neo4j-backup;1.6.1 ...[0m
+[0m[[0minfo[0m] [0mResolving org.neo4j#neo4j-com;1.6.1 ...[0m
+[0m[[0minfo[0m] [0mResolving org.apache.servicemix.bundles#org.apache.servicemix.bundles.netty;3.2.5.Final_1 ...[0m
+[0m[[0minfo[0m] [0mResolving org.apache.zookeeper#zookeeper;3.3.2 ...[0m
+[0m[[0minfo[0m] [0mResolving log4j#log4j;1.2.16 ...[0m
+[0m[[0minfo[0m] [0mResolving org.neo4j#neo4j-management;1.6.1 ...[0m
+[0m[[0minfo[0m] [0mResolving org.scalatest#scalatest_2.9.1;1.7.RC1 ...[0m
+[0m[[0minfo[0m] [0mResolving com.google.inject#guice;3.0 ...[0m
+[0m[[0minfo[0m] [0mResolving javax.inject#javax.inject;1 ...[0m
+[0m[[0minfo[0m] [0mResolving aopalliance#aopalliance;1.0 ...[0m
+[0m[[0minfo[0m] [0mResolving org.sonatype.sisu.inject#cglib;2.2.1-v20090111 ...[0m
+[0m[[0minfo[0m] [0mResolving org.mockito#mockito-core;1.8.5 ...[0m
+[0m[[0minfo[0m] [0mResolving org.objenesis#objenesis;1.0 ...[0m
+[0m[[0minfo[0m] [0mResolving com.typesafe.akka#akka-testkit;2.0 ...[0m

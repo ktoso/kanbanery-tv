@@ -1,0 +1,7 @@
+target
+*.apk
+*.class
+*.jar
+out
+.idea
+*.iml

@@ -1,0 +1,15 @@
+<resources>
+    <string name="c2d_account">ktosopl@gmail.com</string>
+
+    <!-- production elastic ip -->
+    <string name="server_host">smsser.project13.pl</string>
+    <string name="server_port">9998</string>
+
+    <!-- testing at home (wifi) -->
+    <!-- <string name="server_host">192.168.1.22</string> -->
+    <!-- <string name="server_port">9998</string> -->
+
+    <!-- magic loopback on emulator -->
+    <!--<string name="server_host">10.0.2.2</string>-->
+    <!--<string name="server_port">9998</string>-->
+</resources>

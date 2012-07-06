@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/main"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:orientation="vertical">
+
+    <TextView android:id="@+id/smsser_main_logo_title"
+              style="@style/main_logo_text"
+              android:text="@string/app_name"/>
+    <TextView android:id="@+id/my_number_text_view"
+              style="@style/my_number"
+              android:text="@string/my_number"/>
+    <TextView android:id="@+id/my_device_id_text_view"
+              style="@style/my_number"/>
+    <TextView android:id="@+id/my_email_text_view"
+              style="@style/my_number"
+              android:text="@string/my_email"/>
+
+    <Button android:id="@+id/list_waiting_for_push"
+            style="@style/center"
+            android:text="@string/check_for_sms_waiting_for_push"/>
+
+    <Button android:id="@+id/push_all_to_smsser"
+            style="@style/center"
+            android:text="@string/push_all_to_smsser"/>
+</LinearLayout>
