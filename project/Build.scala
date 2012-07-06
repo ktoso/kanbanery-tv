@@ -3,52 +3,31 @@ import sbt.Keys._
 import AndroidKeys._
 
 object Resolvers {
-  val smsserResolvers = Seq(
-    "Sonatype releases" at "http://oss.sonatype.org/content/repositories/releases/",
-    "Typesafe Releases" at "http://repo.typesafe.com/typesafe/releases",
-    "Twitter Releases" at "http://maven.twttr.com/",
-    "Tinkerprop" at "http://tinkerpop.com/maven2", // for neo4j admin
-    "SoftwareMill Releases" at "http://tools.softwaremill.pl/nexus/content/repositories/releases",
-    "SoftwareMill Snapshots" at "http://tools.softwaremill.pl/nexus/content/repositories/snapshots"
-  )
 }
 
 object Versions {
-  val smack = "3.2.1"
-  val akka = "2.0"
+  val janbanery = "1.2"
   val jersey = "1.9"
   val protobuf = "2.4.1"
   val guava = "12.0"
-  val neo4j = "1.8.M01"
   val jackson = "1.8.3"
-  val aws = "1.3.8"
 }
 
 object Dependencies {
   import Resolvers._
   import Versions._
 
-  val scalaTest               = "org.scalatest"           %% "scalatest"                 % "1.7.RC1" % "test"
-  val mockito                 = "org.mockito"              % "mockito-core"              % "1.8.5" % "test"
+  val janbanery    = "pl.project13.janbanery" % "janbanery"     % Versions.janbanery
 
-  // json
-  val liftJson                = "net.liftweb"             %% "lift-json"                 % "2.0"
+  val guava        = "com.google.guava"  % "guava"         % Versions.guava
+  val liftJson     = "net.liftweb"      %% "lift-json"     % "2.0"
+  val jerseyClient = "com.sun.jersey"    % "jersey-client" % Versions.jersey
+  val jerseyCore   = "com.sun.jersey"    % "jersey-core"   % "1.9"
 
-  val guava                   = "com.google.guava"         % "guava"                     % Versions.guava
-  val protoBufJava            = "com.google.protobuf"      % "protobuf-java"             % Versions.protobuf
-  val jerseyClient            = "com.sun.jersey"           % "jersey-client"             % Versions.jersey
+  // testing
+  val scalaTest    = "org.scalatest"    %% "scalatest"     % "1.7.RC1" % "test"
+  val mockito      = "org.mockito"       % "mockito-core"  % "1.8.5" % "test"
 
-  val jerseyCore              = "com.sun.jersey"           % "jersey-core"               % "1.9"
-  val jacksonCore             = "org.codehaus.jackson"     % "jackson-core-asl"          % Versions.jackson
-  val jacksonMapper           = "org.codehaus.jackson"     % "jackson-mapper-asl"        % Versions.jackson
-  val groovy                  = "org.codehaus.groovy"      % "groovy"                    % "1.8.5"
-  val gremlinGroovy           = "com.tinkerpop.gremlin"    % "gremlin-groovy"            % "1.5"
-  val blueprintsNeo4j         = "com.tinkerpop.blueprints" % "blueprints-neo4j-graph"    % "1.2"
-  val neo4jScala              = "org.neo4j"                % "neo4j-scala"               % "0.2.0-SNAPSHOT" from "http://up.project13.pl/files/neo4j-scala-0.2.0-SNAPSHOT.jar" // gh: https://github.com/FaKod/neo4j-scala
-  val commonsConfiguration    = "commons-configuration"    % "commons-configuration"     % "1.8"
-
-  val zxingAndroid            = "com.google.zxing"         % "android-integration"       % "2.0"
-  val softwaremillCommon      = "pl.softwaremill.common"   % "softwaremill-util"         % "65-SNAPSHOT"
 }
 
 object BuildSettings {
@@ -67,7 +46,7 @@ object BuildSettings {
 
 -keepattributes *Annotation*
 
--keep class pl.project13.smsser.**.*
+-keep class pl.project13.kanbanery.**.*
 
 -keep class javax.ws.rs.core.**.*
 -keep class com.sun.ws.**.*
@@ -133,7 +112,7 @@ object BuildSettings {
   
   val androidDependencies = Seq(
     jerseyCore,
-    zxingAndroid
+    janbanery
   )
 
   val buildSettings = Defaults.defaultSettings ++
@@ -143,7 +122,7 @@ object BuildSettings {
       version      := "0.2",
       versionCode  := 1,
       scalaVersion := "2.9.1",
-      resolvers    ++= Resolver.withDefaultResolvers(smsserResolvers, mavenCentral = true, scalaTools = false),
+      resolvers    ++= Resolver.withDefaultResolvers(kanbaneryResolvers, mavenCentral = true, scalaTools = false),
       libraryDependencies ++= generalDependencies
     )
 
@@ -164,22 +143,12 @@ object AndroidBuild extends Build {
   compileOrder := CompileOrder.JavaThenScala
 
   lazy val root = Project (
-    "smsser",
+    "kanbanery-tv",
     file("."),
-    settings = buildSettings ++
-      Seq (
-      )
-  ) aggregate(android)
-
-  lazy val android = Project (
-    "android",
-    file("android"),
     settings = fullAndroidSettings ++
       Seq (
-        name := "android",
-        libraryDependencies ++= generalDependencies ++ androidDependencies ++ Seq(
-          softwaremillCommon % "test"
-        )
+        name := "kanbanery-tv",
+        libraryDependencies ++= generalDependencies ++ androidDependencies ++ Seq()
       )
   )
 
