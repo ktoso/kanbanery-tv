@@ -1,4 +1,4 @@
-package pl.project13.android.scala.toast
+package pl.project13.scala.android.toast
 
 import android.content.Context
 

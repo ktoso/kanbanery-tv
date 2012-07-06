@@ -1,4 +1,4 @@
-package pl.project13.android.scala.activity
+package pl.project13.scala.android.activity
 
 import android.content.Context
 

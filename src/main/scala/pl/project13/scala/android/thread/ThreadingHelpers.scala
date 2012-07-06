@@ -1,8 +1,8 @@
-package pl.project13.android.scala.thread
+package pl.project13.scala.android.thread
 
 import android.os.Handler
 import android.app.Activity
-import pl.project13.android.scala.util.{Logging, RunnableConversions}
+import pl.project13.scala.android.util.{Logging, RunnableConversions}
 
 trait ThreadingHelpers extends RunnableConversions {
   this: Logging =>

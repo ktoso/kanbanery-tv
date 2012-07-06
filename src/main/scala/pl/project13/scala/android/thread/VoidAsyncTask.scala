@@ -1,4 +1,4 @@
-package pl.project13.android.scala.thread
+package pl.project13.scala.android.thread
 
 import android.os.AsyncTask
 

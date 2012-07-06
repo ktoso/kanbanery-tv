@@ -1,4 +1,4 @@
-package pl.project13.android.scala.account
+package pl.project13.scala.android.account
 
 import android.accounts.AccountManager
 import android.content.ContentResolver

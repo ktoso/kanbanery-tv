@@ -10,12 +10,11 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <!-- This app has permission to register and receive data message -->
-    <!--<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>-->
+    <!--<uses-permission scala:name="com.google.scala.c2dm.permission.RECEIVE"/>-->
 
     <application
             android:icon="@drawable/logo_big"
             android:label="@string/app_name"
-            android:theme="@android:style/Holo.Light"
             android:debuggable="true">
 
 

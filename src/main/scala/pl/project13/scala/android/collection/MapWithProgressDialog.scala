@@ -1,9 +1,9 @@
-package pl.project13.android.scala.collection
+package pl.project13.scala.android.collection
 
 import android.app.ProgressDialog
 import android.content.Context
 import android.os.{Handler, AsyncTask}
-import pl.project13.android.scala.thread.{ThreadingHelpers, VoidAsyncTask}
+import pl.project13.scala.android.thread.{ThreadingHelpers, VoidAsyncTask}
 import android.util.Log
 
 trait MapWithProgressDialog {

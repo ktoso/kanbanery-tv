@@ -1,7 +1,7 @@
-package pl.project13.android.scala.activity
+package pl.project13.scala.android.activity
 
-import pl.project13.android.scala.thread.ThreadingHelpers
-import pl.project13.android.scala.util.{Logging, ViewListenerConversions}
+import pl.project13.scala.android.thread.ThreadingHelpers
+import pl.project13.scala.android.util.{Logging, ViewListenerConversions}
 import android.preference.PreferenceActivity
 import pl.project13.kanbanery.tv.TypedActivity
 

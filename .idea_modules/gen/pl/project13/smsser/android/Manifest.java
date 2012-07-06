@@ -11,6 +11,6 @@ public final class Manifest {
     public static final class permission {
         /**  cloud 2 device 
          */
-        public static final String C2D_MESSAGE="com.google.android.apps.chrometophone.permission.C2D_MESSAGE";
+        public static final String C2D_MESSAGE="com.google.scala.apps.chrometophone.permission.C2D_MESSAGE";
     }
 }

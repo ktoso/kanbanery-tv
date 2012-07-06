@@ -1,4 +1,4 @@
-package pl.project13.android.scala.util
+package pl.project13.scala.android.util
 
 import android.content.Intent
 import android.telephony.SmsMessage

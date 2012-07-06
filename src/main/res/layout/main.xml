@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:id="@+id/main"
+              android:background="@android:color/white"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
               android:orientation="vertical">
@@ -16,11 +17,51 @@
             android:layout_gravity="center"
             android:src="@drawable/logo_big" android:contentDescription="@string/logo"/>
 
-    <TextView android:id="@+id/my_number_text_view"
-              style="@style/my_number"
-              android:text=""/>
 
-    <Button android:id="@+id/push_all_to_smsser"
-            style="@style/center"
-            android:text="@string/login"/>
+    <TableLayout android:id="@+id/login_table"
+                 android:layout_height="fill_parent"
+                 android:layout_width="fill_parent">
+
+        <TableRow>
+            <TextView android:layout_column="1"
+                      android:text="@string/email"/>
+            <EditText android:id="@+id/email_edit_text"
+                      android:singleLine="true"
+                      android:inputType="textEmailAddress"
+                      android:layout_column="2"
+                      android:editable="true"
+                      android:layout_weight="1"
+                      android:layout_height="wrap_content"
+                      android:layout_width="fill_parent"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView android:layout_column="1"
+                      android:text="@string/password"/>
+            <EditText android:id="@+id/pass_edit_text"
+                      android:layout_column="2"
+                      android:singleLine="true"
+                      android:inputType="textPassword"
+                      android:editable="true"
+                      android:layout_weight="2"
+                      android:layout_height="50sp"
+                      android:layout_width="fill_parent"/>
+        </TableRow>
+
+        <TextView android:gravity="center"
+                  android:text="@string/the_password_will_not_be_stored_on_the_device"
+                  android:layout_width="fill_parent"/>
+
+        <Button android:id="@+id/sign_in_btn"
+                android:text="@string/sign_in"
+                android:layout_gravity="center"/>
+
+        <TextView android:gravity="center"
+                  android:id="@+id/dont_have_an_account_yet_text"
+                  android:text="@string/dont_have_an_account_yet_register"
+                  android:autoLink="all"
+                  android:layout_width="fill_parent"/>
+
+    </TableLayout>
+
 </LinearLayout>

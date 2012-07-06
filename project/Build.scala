@@ -53,15 +53,15 @@ object BuildSettings {
 
 -keepclasseswithmembernames class * {
     native <methods>;
-    public <init>(android.content.Context, android.util.AttributeSet);
-    public <init>(android.content.Context, android.util.AttributeSet, int);
+    public <init>(scala.content.Context, scala.util.AttributeSet);
+    public <init>(scala.content.Context, scala.util.AttributeSet, int);
     public void get*(...);
     public void set*(...);
     public void writeTo(...);
 }
 
--keep class * implements android.os.Parcelable {
-  public static final android.os.Parcelable$Creator *;
+-keep class * implements scala.os.Parcelable {
+  public static final scala.os.Parcelable$Creator *;
 }
 
 -keepclassmembers enum * {
@@ -119,7 +119,7 @@ object BuildSettings {
     Seq(
       organization := "pl.project13",
       name         := "kanbanery-tv",
-      version      := "0.2",
+      version      := "0.1",
       versionCode  := 1,
       scalaVersion := "2.9.1",
       resolvers    ++= Resolver.withDefaultResolvers(kanbaneryResolvers, mavenCentral = true, scalaTools = false),
@@ -132,7 +132,7 @@ object BuildSettings {
     AndroidManifestGenerator.settings ++
     AndroidMarketPublish.settings ++ Seq (
       keyalias in Android := "change-me",
-      platformName in Android := "android-10"
+      platformName in Android := "scala-12" // 3.1
     )
 }
 
