@@ -25,7 +25,7 @@
     <string name="phone_number_summary">Sometimes the phonenumber cannot be determined by looking at your SIM card, so if this value is wrong, please fix it.</string>
 
     <string name="jump_to_website">Smsser homepage</string>
-    <string name="jump_to_website_summary">Jump to the author's homepage</string>
+    <string name="jump_to_website_summary">Jump to the author homepage</string>
 
     <!-- shared preferences keys -->
     <string name="preference_key_phone_number">phone_number</string>

@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="pl.project13.smsser.android">
+          package="pl.project13.kanbanery.tv">
 
     <application
             android:icon="@drawable/logo_big"
@@ -7,28 +7,12 @@
             android:theme="@android:style/Theme.NoTitleBar"
             android:debuggable="true">
 
-        <activity android:label="@string/app_name" android:name=".activity.SmsserActivity">
+        <activity android:label="@string/app_name" android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activity.SettingsActivity"/>
-
-
-        <service android:name=".service.SyncSmsService"/>
-
-        <receiver android:name=".reciever.SmsserSmsReciever" android:permission="android.permission.BROADCAST_SMS">
-            <intent-filter android:priority="2147483646">
-                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
-            </intent-filter>
-        </receiver>
-
-        <receiver android:name=".reciever.BootReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-            </intent-filter>
-        </receiver>
     </application>
 
     <uses-sdk android:minSdkVersion="7"/>
@@ -36,35 +20,10 @@
     <!-- for sending messages via network -->
     <uses-permission android:name="android.permission.INTERNET"/>
 
-    <!-- for reading/sending sms -->
-    <uses-permission android:name="android.permission.SEND_SMS"/>
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
-    <uses-permission android:name="android.permission.READ_SMS"/>
-    <uses-permission android:name="android.permission.WRITE_SMS"/>
-
-    <!-- for checking "my phone number" -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-
     <!-- checking if we're online -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
-    <!-- starting the reciever hook right on booting -->
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-
-    <!-- getting the users email -->
-    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
-
-    <!-- cloud 2 device -->
-    <permission android:name="com.google.android.apps.chrometophone.permission.C2D_MESSAGE"
-                android:protectionLevel="signature"/>
-    <uses-permission android:name="com.google.android.apps.chrometophone.permission.C2D_MESSAGE"/>
-
     <!-- This app has permission to register and receive data message -->
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
-
-    <!-- App must have this permission to use the library -->
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
-    <uses-permission android:name="android.permission.USE_CREDENTIALS"/>
 
 </manifest>
