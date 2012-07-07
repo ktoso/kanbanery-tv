@@ -10,22 +10,30 @@ import pl.project13.kanbanery.tv.util.KanbaneryPreferences
 import pl.project13.janbanery.core.JanbaneryFactory
 import android.content.Context
 import android.view.LayoutInflater
-import android.widget.TextView
+import android.widget.{ListView, TextView}
 import pl.project13.janbanery.android.rest.AndroidCompatibleRestClient
+import android.util.Log
+import collection.JavaConversions._
+import collection.JavaConverters._
+import android.view.ViewGroup.LayoutParams
+import pl.project13.scala.android.tv.DisplayInformation
 
 class BoardActivity extends ScalaActivity
-with ImplicitContext with ScalaToasts
-with ViewListenerConversions
-with ContentView {
+  with ImplicitContext with ScalaToasts
+  with ViewListenerConversions
+  with DisplayInformation
+  with ContentView {
 
   implicit val handler = new Handler
-  lazy val boardView = findView(TR.columns_wrapper)
   lazy val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE).asInstanceOf[LayoutInflater]
+
+  lazy val BoardView = findView(TR.columns_wrapper)
+  lazy val BoardName = findView(TR.board_name)
+
   val ContentView = TR.layout.board
 
   override def onCreate(bundle: Bundle) {
     super.onCreate(bundle)
-
   }
 
   override def onResume() {
@@ -34,22 +42,33 @@ with ContentView {
     val login = getIntent.getExtras.getString("login")
     val pass = getIntent.getExtras.getString("pass")
 
-
     inFuture {
       Looper.prepare()
       val restClient = new AndroidCompatibleRestClient
-      val using = new JanbaneryFactory(restClient).connectUsing(login, pass)
+      val janbanery = new JanbaneryFactory(restClient).connectUsing(login, pass).toWorkspace("ghack")
 
-      val workspace = using.toWorkspace("ghack")
-      workspace.usingProject("ghack")
-      workspace.columns().all().foreach { column =>
+      janbanery.usingProject("ghack")
 
+      val allCollumns = janbanery.columns.all()
+      allCollumns foreach { column =>
+
+        val tasks = janbanery.tasks.allIn(column)
         inUiThread {
-          val columnView = inflater.inflate(R.layout.column, boardView)
+          BoardName := janbanery.projects.current.getName
+
+          val columnView = inflater.inflate(R.layout.column, null)
           columnView.findViewById(R.id.column).asInstanceOf[TextView].setText(column.getName)
-          boardView.addView(columnView)
+
+          val tasksListView = columnView.findViewById(R.id.tasks).asInstanceOf[ListView]
+          tasksListView.setAdapter(new TaskAdapter(this, tasks))
+
+          BoardView.addView(columnView, widthOfOneColumn(allCollumns.size), displayHeight)
         }
       }
     }
   }
+
+  def widthOfOneColumn(columns: Int) =
+    if (columns > 4) displayWidth / 4
+    else displayWidth / columns
 }

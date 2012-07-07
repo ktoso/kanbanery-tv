@@ -18,8 +18,9 @@
 
 
     <TableLayout android:id="@+id/login_table"
-                 android:layout_height="fill_parent"
-                 android:layout_width="fill_parent">
+                 android:layout_gravity="center"
+                 android:layout_height="wrap_content"
+                 android:layout_width="wrap_content">
 
         <TableRow>
             <TextView android:layout_column="1"
