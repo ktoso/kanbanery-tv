@@ -15,16 +15,10 @@ with ContentView {
 
   implicit val handler = new Handler
 
-  val ContentView = TR.layout.main
-
-  lazy val SignInButton = findView(TR.sign_in_btn)
-  lazy val EmailEditText = findView(TR.email_edit_text)
+  val ContentView = TR.layout.board
 
   override def onCreate(bundle: Bundle) {
     super.onCreate(bundle)
 
-    SignInButton onClick {
-      KanbaneryPreferences.login = EmailEditText.getText.toString
-    }
   }
 }
