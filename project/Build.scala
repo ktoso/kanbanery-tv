@@ -3,10 +3,13 @@ import sbt.Keys._
 import AndroidKeys._
 
 object Resolvers {
+  val kanbaneryResolvers = Seq(
+    "Sonatype releases" at "http://oss.sonatype.org/content/repositories/releases/",
+    "Typesafe Releases" at "http://repo.typesafe.com/typesafe/releases"
+  )
 }
 
 object Versions {
-  val janbanery = "1.2"
   val jersey = "1.9"
   val protobuf = "2.4.1"
   val guava = "12.0"
@@ -17,16 +20,17 @@ object Dependencies {
   import Resolvers._
   import Versions._
 
-  val janbanery    = "pl.project13.janbanery" % "janbanery"     % Versions.janbanery
+  val janbaneryCore    = "pl.project13.janbanery" % "janbanery-core"    % "1.2"
+  val janbaneryAndorid = "pl.project13.janbanery" % "janbanery-android" % "1.0"
 
-  val guava        = "com.google.guava"  % "guava"         % Versions.guava
-  val liftJson     = "net.liftweb"      %% "lift-json"     % "2.0"
-  val jerseyClient = "com.sun.jersey"    % "jersey-client" % Versions.jersey
-  val jerseyCore   = "com.sun.jersey"    % "jersey-core"   % "1.9"
+  val guava        = "com.google.guava"  % "guava"          % Versions.guava
+  val liftJson     = "net.liftweb"      %% "lift-json"      % "2.0"
+  val jerseyClient = "com.sun.jersey"    % "jersey-client"  % Versions.jersey
+  val jerseyCore   = "com.sun.jersey"    % "jersey-core"    % "1.9"
 
   // testing
-  val scalaTest    = "org.scalatest"    %% "scalatest"     % "1.7.RC1" % "test"
-  val mockito      = "org.mockito"       % "mockito-core"  % "1.8.5" % "test"
+  val scalaTest = "org.scalatest"    %% "scalatest"      % "1.7.RC1" % "test"
+  val mockito   = "org.mockito"       % "mockito-core"   % "1.8.5" % "test"
 
 }
 
@@ -105,16 +109,12 @@ object BuildSettings {
 
 
   val generalDependencies = Seq(
+    jerseyCore,
+    janbaneryCore, janbaneryAndorid,
     guava,
-    scalaTest,
-    mockito
+    scalaTest, mockito
   )
   
-  val androidDependencies = Seq(
-    jerseyCore,
-    janbanery
-  )
-
   val buildSettings = Defaults.defaultSettings ++
     Seq(
       organization := "pl.project13",
@@ -132,7 +132,7 @@ object BuildSettings {
     AndroidManifestGenerator.settings ++
     AndroidMarketPublish.settings ++ Seq (
       keyalias in Android := "change-me",
-      platformName in Android := "scala-12" // 3.1
+      platformName in Android := "android-12" // 3.1
     )
 }
 
@@ -148,7 +148,7 @@ object AndroidBuild extends Build {
     settings = fullAndroidSettings ++
       Seq (
         name := "kanbanery-tv",
-        libraryDependencies ++= generalDependencies ++ androidDependencies ++ Seq()
+        libraryDependencies ++= generalDependencies ++ Seq()
       )
   )
 
