@@ -1,6 +1,6 @@
 package pl.project13.scala.android.thread
 
-import android.os.Handler
+import android.os.{Looper, Handler}
 import android.app.Activity
 import pl.project13.scala.android.util.{Logging, RunnableConversions}
 import com.google.common.util.concurrent.{Futures, ListenableFuture}
@@ -16,6 +16,10 @@ trait ThreadingHelpers extends RunnableConversions {
   }
 
   def inFuture(block: => Unit) {
-    new Thread(block).start()
+    new Thread({
+      Looper.prepare()
+
+      block
+    }).start()
   }
 }

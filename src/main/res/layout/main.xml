@@ -50,11 +50,8 @@
                       android:layout_width="fill_parent"/>
         </TableRow>
 
-        <TextView android:gravity="center"
-                  android:text="@string/the_password_will_not_be_stored_on_the_device"
-                  android:layout_width="fill_parent"/>
-
         <Button android:id="@+id/sign_in_btn"
+                android:textSize="20dp"
                 android:text="@string/sign_in"
                 android:layout_gravity="center"/>
 

@@ -9,15 +9,22 @@
               android:background="@drawable/bg">
         >
 
+    <ImageView android:src="@drawable/kanbanery_logo_small"
+               android:layout_height="wrap_content"
+               android:layout_width="wrap_content"
+               android:contentDescription="@string/kanbanery_logo"/>
+
     <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
         <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:text="Project: "/>
+                android:text="@string/project"
+                android:textSize="12dp"/>
         <TextView
                 android:id="@+id/board_name"
+                android:textSize="12dp"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 />

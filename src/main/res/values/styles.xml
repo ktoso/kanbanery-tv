@@ -20,4 +20,9 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center</item>
     </style>
+
+    <style name="task">
+        <item name="android:layout_margin">2dp</item>
+    </style>
+
 </resources>

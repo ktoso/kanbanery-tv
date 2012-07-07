@@ -11,7 +11,9 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int logo_big=0x7f020000;
+        public static final int border=0x7f020000;
+        public static final int kanbanery_logo_small=0x7f020001;
+        public static final int logo_big=0x7f020002;
     }
     public static final class id {
         public static final int board_name=0x7f070001;
@@ -48,6 +50,7 @@ public final class R {
         /**  Buttons 
          */
         public static final int kanbanery=0x7f040003;
+        public static final int kanbanery_logo=0x7f040012;
         public static final int login=0x7f04000e;
         public static final int logo=0x7f040005;
         /**  UI 
@@ -57,6 +60,7 @@ public final class R {
         /**  shared preferences keys 
          */
         public static final int preference_key_phone_number=0x7f040008;
+        public static final int project=0x7f040013;
         /**  production elastic ip 
          */
         public static final int server_host=0x7f040001;
@@ -72,5 +76,6 @@ public final class R {
         public static final int center=0x7f050002;
         public static final int main_logo_text=0x7f050000;
         public static final int my_number=0x7f050001;
+        public static final int task=0x7f050003;
     }
 }

@@ -19,6 +19,7 @@ import android.view.ViewGroup.LayoutParams
 import pl.project13.scala.android.tv.DisplayInformation
 import java.util
 import pl.project13.janbanery.resources.User
+import java.net.URL
 
 class BoardActivity extends ScalaActivity
   with ImplicitContext with ScalaToasts
@@ -45,7 +46,6 @@ class BoardActivity extends ScalaActivity
     val pass = getIntent.getExtras.getString("pass")
 
     inFuture {
-      Looper.prepare()
       val restClient = new AndroidCompatibleRestClient
       val janbanery = new JanbaneryFactory(restClient).connectUsing(login, pass).toWorkspace("ghack")
 
