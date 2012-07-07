@@ -3,7 +3,9 @@
               android:id="@+id/main"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
-              android:orientation="vertical">
+              android:orientation="vertical"
+              android:background="@drawable/bg">
+
 
     <TextView android:id="@+id/smsser_main_logo_title"
               style="@style/main_logo_text"
