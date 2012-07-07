@@ -10,7 +10,7 @@
             android:layout_alignParentLeft="true"
             android:layout_height="25dp"
             android:layout_width="25dp"
-            android:src="@drawable/listIcon"
+            android:src="@drawable/list_icon"
             android:contentDescription="@string/logo_description"
             />
 

@@ -29,6 +29,8 @@ class LoginActivity extends ScalaActivity
     EmailEditText := "ghack@project13.pl"
     PassEditText := "123456"
 
+    SignInButton.requestFocus()
+
     SignInButton onClick {
       val login = EmailEditText.getText.toString
       val pass = PassEditText.getText.toString

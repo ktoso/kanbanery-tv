@@ -7,24 +7,28 @@
               android:paddingLeft="10dp"
               android:paddingRight="10dp"
               android:background="@drawable/bg">
-        >
-
-    <ImageView android:src="@drawable/kanbanery_logo_small"
-               android:layout_height="wrap_content"
-               android:layout_width="wrap_content"
-               android:contentDescription="@string/kanbanery_logo"/>
+    >
 
     <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
+        <ImageView android:src="@drawable/kanbanery_logo_small"
+                   android:layout_height="wrap_content"
+                   android:layout_width="wrap_content"
+                   android:contentDescription="@string/kanbanery_logo"/>
+
         <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:paddingTop="10dp"
                 android:text="@string/project"
-                android:textSize="12dp"/>
+                android:textSize="21dp"
+                />
         <TextView
                 android:id="@+id/board_name"
-                android:textSize="12dp"
+                android:textSize="21dp"
+                android:paddingTop="10dp"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 />

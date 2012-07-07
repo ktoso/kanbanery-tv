@@ -11,25 +11,31 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int border=0x7f020000;
-        public static final int kanbanery_logo_small=0x7f020001;
-        public static final int logo_big=0x7f020002;
+        public static final int bg=0x7f020000;
+        public static final int border=0x7f020001;
+        public static final int kanbanery_logo_small=0x7f020002;
+        public static final int list_icon=0x7f020003;
+        public static final int logo_big=0x7f020004;
     }
     public static final class id {
         public static final int board_name=0x7f070001;
-        public static final int column_icon =0x7f070003;
+        public static final int column_icon=0x7f070003;
+        public static final int column_label=0x7f070004;
         public static final int columns_wrapper=0x7f070002;
-        public static final int dont_have_an_account_yet_text=0x7f07000b;
-        public static final int email_edit_text=0x7f070008;
-        public static final int kanbanery_logo=0x7f070006;
-        public static final int login_table=0x7f070007;
+        public static final int dont_have_an_account_yet_text=0x7f07000c;
+        public static final int email_edit_text=0x7f070009;
+        public static final int kanbanery_logo=0x7f070007;
+        public static final int login_table=0x7f070008;
         public static final int main=0x7f070000;
-        public static final int pass_edit_text=0x7f070009;
-        public static final int settings=0x7f07000d;
-        public static final int sign_in_btn=0x7f07000a;
-        public static final int smsser_main_logo_title=0x7f070005;
-        public static final int task_name=0x7f07000c;
-        public static final int tasks=0x7f070004;
+        public static final int owner_image=0x7f07000e;
+        public static final int owner_name=0x7f07000d;
+        public static final int pass_edit_text=0x7f07000a;
+        public static final int settings=0x7f070011;
+        public static final int sign_in_btn=0x7f07000b;
+        public static final int smsser_main_logo_title=0x7f070006;
+        public static final int task_name=0x7f070010;
+        public static final int task_type=0x7f07000f;
+        public static final int tasks=0x7f070005;
     }
     public static final class layout {
         public static final int board=0x7f030000;
@@ -44,6 +50,7 @@ public final class R {
         public static final int app_name=0x7f040006;
         public static final int c2d_account=0x7f040000;
         public static final int click_me=0x7f04000f;
+        public static final int default_column_label=0x7f040014;
         public static final int done=0x7f040010;
         public static final int dont_have_an_account_yet_register=0x7f040011;
         public static final int email=0x7f04000b;
@@ -53,6 +60,7 @@ public final class R {
         public static final int kanbanery_logo=0x7f040012;
         public static final int login=0x7f04000e;
         public static final int logo=0x7f040005;
+        public static final int logo_description=0x7f040015;
         /**  UI 
          */
         public static final int password=0x7f04000a;
@@ -73,9 +81,8 @@ public final class R {
         public static final int wowzers=0x7f040004;
     }
     public static final class style {
-        public static final int center=0x7f050002;
+        public static final int center=0x7f050001;
         public static final int main_logo_text=0x7f050000;
-        public static final int my_number=0x7f050001;
-        public static final int task=0x7f050003;
+        public static final int task_element=0x7f050002;
     }
 }

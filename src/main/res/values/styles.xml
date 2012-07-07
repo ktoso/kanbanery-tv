@@ -9,20 +9,15 @@
         <item name="android:paddingBottom">5sp</item>
     </style>
 
-    <style name="my_number" parent="main_logo_text">
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">18sp</item>
-        <item name="android:padding">1sp</item>
-    </style>
-
     <style name="center">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center</item>
     </style>
 
-    <style name="task">
+    <style name="task_element">
         <item name="android:layout_margin">2dp</item>
+        <item name="android:textColor">@android:color/black</item>
     </style>
 
 </resources>

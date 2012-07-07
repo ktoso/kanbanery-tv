@@ -1,9 +1,9 @@
 package pl.project13.scala.android.thread
 
 import android.os.{Looper, Handler}
-import android.app.Activity
+import android.app.ProgressDialog
 import pl.project13.scala.android.util.{Logging, RunnableConversions}
-import com.google.common.util.concurrent.{Futures, ListenableFuture}
+import android.content.Context
 
 trait ThreadingHelpers extends RunnableConversions {
   this: Logging =>
@@ -21,5 +21,17 @@ trait ThreadingHelpers extends RunnableConversions {
 
       block
     }).start()
+  }
+
+  def inFutureWithProgressDialog(block: => Unit)(implicit ctx: Context, handler: Handler) {
+    val dialog = new ProgressDialog(ctx)
+    dialog.setMessage("Loading...")
+    dialog.show()
+
+    inFuture {
+      block
+
+      inUiThread { dialog.hide() }
+    }
   }
 }
