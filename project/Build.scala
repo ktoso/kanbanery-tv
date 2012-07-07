@@ -20,9 +20,10 @@ object Dependencies {
   import Resolvers._
   import Versions._
 
-  val janbaneryCore    = "pl.project13.janbanery" % "janbanery-core"    % "1.2"
-  val janbaneryAndorid = "pl.project13.janbanery" % "janbanery-android" % "1.0"
+//  val janbaneryCore    = "pl.project13.janbanery" % "janbanery-core"    % "1.2"
+//  val janbaneryAndorid = "pl.project13.janbanery" % "janbanery-android" % "1.0"
 
+  val slf4jNoop    = "org.slf4j"         % "slf4j-nop"      % "1.6.6"
   val guava        = "com.google.guava"  % "guava"          % Versions.guava
   val liftJson     = "net.liftweb"      %% "lift-json"      % "2.0"
   val jerseyClient = "com.sun.jersey"    % "jersey-client"  % Versions.jersey
@@ -109,8 +110,6 @@ object BuildSettings {
 
 
   val generalDependencies = Seq(
-    jerseyCore,
-    janbaneryCore, janbaneryAndorid,
     guava,
     scalaTest, mockito
   )

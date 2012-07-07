@@ -20,10 +20,14 @@ class LoginActivity extends ScalaActivity
 
   lazy val SignInButton = findView(TR.sign_in_btn)
   lazy val EmailEditText = findView(TR.email_edit_text)
-  lazy val PassEditText = findView(TR.email_edit_text)
+  lazy val PassEditText = findView(TR.pass_edit_text)
 
   override def onCreate(bundle: Bundle) {
     super.onCreate(bundle)
+
+    // todo remove me
+    EmailEditText := "ghack@project13.pl"
+    PassEditText := "123456"
 
     SignInButton onClick {
       val login = EmailEditText.getText.toString
