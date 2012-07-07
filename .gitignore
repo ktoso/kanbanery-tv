@@ -1,3 +1,9 @@
 target
 *class
 *apk
+
+
+#idea
+.idea
+.idea_modules
+*.iml
