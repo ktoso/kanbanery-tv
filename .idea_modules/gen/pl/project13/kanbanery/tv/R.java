@@ -17,7 +17,7 @@ public final class R {
     }
     public static final class id {
         public static final int board_name=0x7f070001;
-        public static final int column=0x7f070003;
+        public static final int column_icon =0x7f070003;
         public static final int columns_wrapper=0x7f070002;
         public static final int dont_have_an_account_yet_text=0x7f07000b;
         public static final int email_edit_text=0x7f070008;

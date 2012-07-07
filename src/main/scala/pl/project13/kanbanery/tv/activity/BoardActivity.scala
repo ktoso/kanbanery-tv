@@ -20,6 +20,8 @@ import pl.project13.scala.android.tv.DisplayInformation
 import java.util
 import pl.project13.janbanery.resources.User
 import java.net.URL
+import java.io.InputStream
+import android.graphics.drawable.Drawable
 
 class BoardActivity extends ScalaActivity
   with ImplicitContext with ScalaToasts
@@ -57,15 +59,17 @@ class BoardActivity extends ScalaActivity
         val allUsers: util.List[User] = janbanery.users().all()
 
         val tasksWithOwners = janbanery.tasks.allIn(column).map { task =>
-          val user = allUsers.find( _.getId eq task.getOwnerId)
-          (task, user.getOrElse(new User.NoOne))
+          val user = allUsers.find( _.getId eq task.getOwnerId).getOrElse(new User.NoOne)
+          val userImage = LoadImageFromWebOperations(user.getGravatarUrl)
+
+          (task, user, userImage)
         }
 
         inUiThread {
           BoardName := janbanery.projects.current.getName
 
           val columnView = inflater.inflate(R.layout.column, null)
-          columnView.findViewById(R.id.column).asInstanceOf[TextView].setText(column.getName)
+          columnView.findViewById(R.id.column_icon).asInstanceOf[TextView].setText(column.getName)
 
           val tasksListView = columnView.findViewById(R.id.tasks).asInstanceOf[ListView]
           tasksListView.setAdapter(new TaskAdapter(this, tasksWithOwners))
@@ -79,4 +83,12 @@ class BoardActivity extends ScalaActivity
   def widthOfOneColumn(columns: Int) =
     if (columns > 4) displayWidth / 4
     else displayWidth / columns
+
+  def LoadImageFromWebOperations(url: String) {
+    try {
+    val is = (InputStream) new URL(url).getContent();
+    val d = Drawable.createFromStream(is, "src name");
+    return d;
+    } catch { case e: Exception => }
+  }
 }

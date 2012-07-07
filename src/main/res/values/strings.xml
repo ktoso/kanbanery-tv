@@ -24,5 +24,7 @@
     <string name="dont_have_an_account_yet_register">Don\'t have an account yet? Register for free at kanbanery.com</string>
     <string name="kanbanery_logo">kanbanery logo</string>
     <string name="project">Project:</string>
+    <string name="default_column_label">Some column</string>
+    <string name="logo_description">Kanbananery logo</string>
 
 </resources>

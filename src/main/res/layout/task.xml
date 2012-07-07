@@ -12,8 +12,15 @@
               android:layout_width="wrap_content"
               android:text="Pwner"
               android:layout_alignRight="@+id/owner_image"
-
             />
+
+    <ImageView android:id="@+id/owner_image"
+               android:layout_height="25dp"
+               android:layout_width="25dp"
+               android:contentDescription="User icon"
+               android:src="@drawable/listIcon"
+               android:layout_alignParentRight="true"
+                       />
 
     <TextView android:id="@+id/task_type"
               android:layout_height="wrap_content"
