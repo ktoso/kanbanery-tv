@@ -17,6 +17,8 @@ import collection.JavaConversions._
 import collection.JavaConverters._
 import android.view.ViewGroup.LayoutParams
 import pl.project13.scala.android.tv.DisplayInformation
+import java.util
+import pl.project13.janbanery.resources.User
 
 class BoardActivity extends ScalaActivity
   with ImplicitContext with ScalaToasts
@@ -52,7 +54,13 @@ class BoardActivity extends ScalaActivity
       val allCollumns = janbanery.columns.all()
       allCollumns foreach { column =>
 
-        val tasks = janbanery.tasks.allIn(column)
+        val allUsers: util.List[User] = janbanery.users().all()
+
+        val tasksWithOwners = janbanery.tasks.allIn(column).map { task =>
+          val user = allUsers.find( _.getId eq task.getOwnerId)
+          (task, user.getOrElse(new User.NoOne))
+        }
+
         inUiThread {
           BoardName := janbanery.projects.current.getName
 
@@ -60,7 +68,7 @@ class BoardActivity extends ScalaActivity
           columnView.findViewById(R.id.column).asInstanceOf[TextView].setText(column.getName)
 
           val tasksListView = columnView.findViewById(R.id.tasks).asInstanceOf[ListView]
-          tasksListView.setAdapter(new TaskAdapter(this, tasks))
+          tasksListView.setAdapter(new TaskAdapter(this, tasksWithOwners))
 
           BoardView.addView(columnView, widthOfOneColumn(allCollumns.size), displayHeight)
         }
