@@ -26,5 +26,9 @@
     <string name="project">Project:</string>
     <string name="default_column_label">Some column</string>
     <string name="logo_description">Kanbananery logo</string>
+    <string name="task_type">Task type</string>
+    <string name="task_name">Task name</string>
+    <string name="task_owner">Task owner</string>
+    <string name="you_have_no_workspace_why_not_create_one_now">You have no workspaces, please create one.</string>
 
 </resources>

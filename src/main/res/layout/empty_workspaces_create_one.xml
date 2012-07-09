@@ -1,0 +1,20 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:orientation="vertical">
+
+   <TextView
+         android:layout_height="wrap_content"
+         android:layout_width="fill_parent"
+         android:autoLink="all"
+         android:gravity="top|center"
+         android:text="@string/you_have_no_workspace_why_not_create_one_now"
+         />
+   <!-- todo unhide and implement when kanbanery allows to create workspaces via api -->
+   <!--<Button android:id="@+id/create_btn"-->
+           <!--android:layout_marginTop="30dip"-->
+           <!--android:layout_height="wrap_content"-->
+           <!--android:layout_width="fill_parent"-->
+           <!--android:text="@string/create_workspace_and_project"-->
+         <!--/>-->
+</LinearLayout>

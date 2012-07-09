@@ -35,7 +35,7 @@ class LoginActivity extends ScalaActivity
       val login = EmailEditText.getText.toString
       val pass = PassEditText.getText.toString
 
-      Intents.startBoard(login, pass)
+      Intents.ProjectSelectionActivity.start(login, pass)
       finish()
     }
   }

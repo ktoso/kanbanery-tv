@@ -9,21 +9,21 @@
                 android:paddingTop="5dp"
         >
 
-    <TextView android:id="@+id/owner_name"
-              android:layout_height="wrap_content"
-              android:layout_width="wrap_content"
-              style="@style/task_element"
-              android:text="Pwner"
-              android:layout_alignRight="@+id/owner_image"
-            />
+    <ImageView
+            android:id="@+id/owner_image"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            style="@style/task_element"
+            android:text="@string/task_owner"
+            android:contentDescription="Owner"/>
 
-    <ImageView android:id="@+id/owner_image"
-               android:layout_height="25dp"
-               android:layout_width="25dp"
-               android:contentDescription="User icon"
-               android:src="@drawable/list_icon"
-               android:layout_alignParentRight="true"
-                       />
+    <TextView
+            android:id="@+id/owner_name"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            style="@style/task_element"
+            android:text="@string/task_owner"
+            android:contentDescription="Owner"/>
 
     <TextView android:id="@+id/task_type"
               android:layout_height="wrap_content"
@@ -31,14 +31,14 @@
               android:layout_alignParentTop="true"
               android:layout_alignParentRight="true"
               style="@style/task_element"
-              android:text="Task type"
+              android:text="@string/task_type"
             />
 
     <TextView android:id="@+id/task_name"
               android:layout_height="wrap_content"
               android:layout_width="wrap_content"
               style="@style/task_element"
-              android:text="Task name"
+              android:text="@string/task_name"
             />
 
 

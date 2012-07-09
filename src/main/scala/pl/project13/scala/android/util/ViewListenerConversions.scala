@@ -5,12 +5,10 @@ import android.view.View.OnClickListener
 import android.widget.{TextView, Button}
 import android.content.DialogInterface
 
-trait ViewListenerConversions {
+trait ViewListenerConversions extends ViewConversions {
 
   // views
   implicit def buttonHasOnClick(btn: Button) = new HasOnClick(btn)
-
-  implicit def textViewCanHaveText(btn: TextView) = new TextSettable(btn)
 
   // listeners
 
@@ -24,11 +22,5 @@ trait ViewListenerConversions {
 
   class HasOnClick(btn: Button) {
     def onClick(block: => Unit) { btn setOnClickListener block }
-  }
-
-  class TextSettable(v: TextView) {
-    def :=(s: String) {
-      v.setText(s)
-    }
   }
 }

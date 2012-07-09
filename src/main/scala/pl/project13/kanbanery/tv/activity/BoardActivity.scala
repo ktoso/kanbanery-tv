@@ -6,7 +6,7 @@ import pl.project13.scala.android.toast.ScalaToasts
 import android.os.{Looper, Bundle, Handler}
 import pl.project13.kanbanery.tv.{R, TR}
 import pl.project13.scala.android.util.ViewListenerConversions
-import pl.project13.kanbanery.tv.util.KanbaneryPreferences
+import pl.project13.kanbanery.tv.util.{Intents, KanbaneryPreferences}
 import pl.project13.janbanery.core.JanbaneryFactory
 import android.content.Context
 import android.view.LayoutInflater
@@ -23,6 +23,7 @@ import java.net.URL
 import java.io.InputStream
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.ShapeDrawable
+import pl.project13.janbanery.config.{DefaultConfiguration, Configuration}
 
 class BoardActivity extends ScalaActivity
   with ImplicitContext with ScalaToasts
@@ -45,14 +46,18 @@ class BoardActivity extends ScalaActivity
   override def onResume() {
     super.onResume()
 
-    val login = getIntent.getExtras.getString("login")
-    val pass = getIntent.getExtras.getString("pass")
+    val apiKey = getIntent.getExtras.getString(Intents.BoardActivity.ExtraApiKey)
+    val workspaceName = getIntent.getExtras.getString(Intents.BoardActivity.ExtraWorkspaceName)
+    val projectName = getIntent.getExtras.getString(Intents.BoardActivity.ExtraProjectName)
 
     inFutureWithProgressDialog {
-      val restClient = new AndroidCompatibleRestClient
-      val janbanery = new JanbaneryFactory(restClient).connectUsing(login, pass).toWorkspace("ghack")
 
-      janbanery.usingProject("ghack")
+      // todo there's a factory for that
+
+      val restClient = new AndroidCompatibleRestClient
+      val janbanery = new JanbaneryFactory(restClient).connectUsing(new DefaultConfiguration(apiKey))
+        .toWorkspace(workspaceName)
+        .usingProject(projectName)
 
       val allCollumns = janbanery.columns.all()
       allCollumns foreach { column =>

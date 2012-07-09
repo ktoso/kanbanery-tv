@@ -19,29 +19,36 @@ public final class R {
     }
     public static final class id {
         public static final int board_name=0x7f070001;
-        public static final int column_icon=0x7f070003;
-        public static final int column_label=0x7f070004;
+        public static final int column_label=0x7f070003;
         public static final int columns_wrapper=0x7f070002;
-        public static final int dont_have_an_account_yet_text=0x7f07000c;
-        public static final int email_edit_text=0x7f070009;
-        public static final int kanbanery_logo=0x7f070007;
-        public static final int login_table=0x7f070008;
+        public static final int dont_have_an_account_yet_text=0x7f07000b;
+        public static final int email_edit_text=0x7f070008;
+        public static final int id=0x7f070012;
+        public static final int kanbanery_logo=0x7f070006;
+        public static final int login_table=0x7f070007;
         public static final int main=0x7f070000;
-        public static final int owner_image=0x7f07000e;
+        public static final int owner_image=0x7f07000c;
         public static final int owner_name=0x7f07000d;
-        public static final int pass_edit_text=0x7f07000a;
-        public static final int settings=0x7f070011;
-        public static final int sign_in_btn=0x7f07000b;
-        public static final int smsser_main_logo_title=0x7f070006;
-        public static final int task_name=0x7f070010;
-        public static final int task_type=0x7f07000f;
-        public static final int tasks=0x7f070005;
+        public static final int pass_edit_text=0x7f070009;
+        public static final int project_name=0x7f070011;
+        public static final int settings=0x7f070014;
+        public static final int sign_in_btn=0x7f07000a;
+        public static final int smsser_main_logo_title=0x7f070005;
+        public static final int task_name=0x7f07000f;
+        public static final int task_type=0x7f07000e;
+        public static final int tasks=0x7f070004;
+        public static final int workspace_name=0x7f070013;
+        public static final int workspaces=0x7f070010;
     }
     public static final class layout {
         public static final int board=0x7f030000;
         public static final int column=0x7f030001;
-        public static final int main=0x7f030002;
-        public static final int task=0x7f030003;
+        public static final int empty_workspaces_create_one=0x7f030002;
+        public static final int main=0x7f030003;
+        public static final int task=0x7f030004;
+        public static final int workspaces_and_projects=0x7f030005;
+        public static final int workspaces_project=0x7f030006;
+        public static final int workspaces_workspace=0x7f030007;
     }
     public static final class menu {
         public static final int main=0x7f060000;
@@ -77,12 +84,18 @@ public final class R {
          */
         public static final int settings=0x7f040007;
         public static final int sign_in=0x7f04000d;
+        public static final int task_name=0x7f040017;
+        public static final int task_owner=0x7f040018;
+        public static final int task_type=0x7f040016;
         public static final int the_password_will_not_be_stored_on_the_device=0x7f04000c;
         public static final int wowzers=0x7f040004;
+        public static final int you_have_no_workspace_why_not_create_one_now=0x7f040019;
     }
     public static final class style {
         public static final int center=0x7f050001;
         public static final int main_logo_text=0x7f050000;
         public static final int task_element=0x7f050002;
+        public static final int workspaces_project_label=0x7f050003;
+        public static final int workspaces_workspace_label=0x7f050004;
     }
 }
