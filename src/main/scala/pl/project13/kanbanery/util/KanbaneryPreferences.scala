@@ -1,4 +1,4 @@
-package pl.project13.kanbanery.tv.util
+package pl.project13.kanbanery.util
 
 import android.content.{SharedPreferences, Context}
 import java.util

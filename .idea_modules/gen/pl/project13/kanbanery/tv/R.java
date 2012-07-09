@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package pl.project13.kanbanery.tv;
+package pl.project13.kanbanery;
 
 public final class R {
     public static final class attr {

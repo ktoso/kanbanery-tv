@@ -1,11 +1,11 @@
-package pl.project13.kanbanery.tv.activity
+package pl.project13.kanbanery.activity
 
 import pl.project13.scala.android.activity.{ContentView, ImplicitContext, ScalaActivity}
 import pl.project13.scala.android.toast.ScalaToasts
 import android.os.{Bundle, Handler}
-import pl.project13.kanbanery.tv.{R, TR}
+import pl.project13.kanbanery.{R, TR}
 import pl.project13.scala.android.util.ViewListenerConversions
-import pl.project13.kanbanery.tv.util.{KanbaneryPreferences, Intents}
+import pl.project13.kanbanery.util.{KanbaneryPreferences, Intents}
 import android.content.Context
 import android.view.{View, LayoutInflater}
 import android.widget.{ExpandableListView, SimpleExpandableListAdapter}

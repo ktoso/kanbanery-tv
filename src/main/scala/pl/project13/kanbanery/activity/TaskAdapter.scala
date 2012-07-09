@@ -1,11 +1,11 @@
-package pl.project13.kanbanery.tv.activity
+package pl.project13.kanbanery.activity
 
 import android.widget.{EditText, ImageView, TextView, ArrayAdapter}
 import android.view.{ViewGroup, View}
 import android.content.Context
 import pl.project13.janbanery.resources.{User, Task}
 import collection.JavaConversions._
-import pl.project13.kanbanery.tv.R
+import pl.project13.kanbanery.R
 import pl.project13.janbanery.core.Janbanery
 import android.graphics.drawable.Drawable
 import pl.project13.scala.android.util.ViewConversions

@@ -1,7 +1,7 @@
-package pl.project13.kanbanery.tv.util
+package pl.project13.kanbanery.util
 
 import android.content.{Context, Intent}
-import pl.project13.kanbanery.tv.activity.{ProjectSelectionActivity, BoardActivity}
+import pl.project13.kanbanery.activity.{ProjectSelectionActivity, BoardActivity}
 
 object Intents {
 

@@ -3,7 +3,7 @@ package pl.project13.janbanery
 import _root_.android.content.Context
 import android.rest.AndroidCompatibleRestClient
 import core.{JanbaneryFactory, Janbanery}
-import pl.project13.kanbanery.tv.util.KanbaneryPreferences
+import pl.project13.kanbanery.util.KanbaneryPreferences
 
 object JanbaneryFromSharedProperties {
 
