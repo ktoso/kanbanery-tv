@@ -23,6 +23,10 @@ object Dependencies {
 //  val janbaneryCore    = "pl.project13.janbanery" % "janbanery-core"    % "1.2"
 //  val janbaneryAndorid = "pl.project13.janbanery" % "janbanery-android" % "1.0"
 
+  val viewPagerIndicator = "com.viewpagerindicator" % "library" % "2.3.1" artifacts(Artifact("library", "apklib", "apklib"))
+  val actionBarSherlock  = "com.actionbarsherlock"  % "library" % "4.1.0" artifacts(Artifact("library", "apklib", "apklib"))
+  val nineOldAndroids    = "com.nineoldandroids"    % "library" % "2.2.0"
+
   val slf4jNoop    = "org.slf4j"         % "slf4j-nop"      % "1.6.6"
   val guava        = "com.google.guava"  % "guava"          % Versions.guava
   val liftJson     = "net.liftweb"      %% "lift-json"      % "2.0"
@@ -109,6 +113,12 @@ object BuildSettings {
 //  )
 
 
+  val androidDependencies = Seq(
+    viewPagerIndicator,
+    actionBarSherlock,
+    nineOldAndroids
+  )
+
   val generalDependencies = Seq(
     guava,
     scalaTest, mockito
@@ -117,12 +127,12 @@ object BuildSettings {
   val buildSettings = Defaults.defaultSettings ++
     Seq(
       organization := "pl.project13",
-      name         := "kanbanery-tv",
+      name         := "kanbanery",
       version      := "0.1",
       versionCode  := 1,
       scalaVersion := "2.9.1",
       resolvers    ++= Resolver.withDefaultResolvers(kanbaneryResolvers, mavenCentral = true, scalaTools = false),
-      libraryDependencies ++= generalDependencies
+      libraryDependencies ++= generalDependencies ++ androidDependencies
     )
 
   lazy val fullAndroidSettings = buildSettings ++
@@ -131,7 +141,7 @@ object BuildSettings {
     AndroidManifestGenerator.settings ++
     AndroidMarketPublish.settings ++ Seq (
       keyalias in Android := "change-me",
-      platformName in Android := "android-12" // 3.1
+      platformName in Android := "android-15" // 3.1
     )
 }
 
@@ -139,15 +149,15 @@ object AndroidBuild extends Build {
   import Dependencies._
   import BuildSettings._
 
-  compileOrder := CompileOrder.JavaThenScala
+//  compileOrder := CompileOrder.JavaThenScala
 
   lazy val root = Project (
-    "kanbanery-tv",
+    "kanbanery",
     file("."),
     settings = fullAndroidSettings ++
       Seq (
-        name := "kanbanery-tv",
-        libraryDependencies ++= generalDependencies ++ Seq()
+        name := "kanbanery",
+        libraryDependencies ++= Seq()
       )
   )
 

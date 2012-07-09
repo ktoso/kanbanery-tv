@@ -1,6 +1,6 @@
 package pl.project13.kanbanery.activity
 
-import pl.project13.scala.android.activity.{ContentView, ImplicitContext, ScalaActivity}
+import pl.project13.scala.android.activity.{ScalaSherlockActivity, ContentView, ImplicitContext, ScalaActivity}
 import pl.project13.scala.android.toast.ScalaToasts
 import android.os.{Bundle, Handler}
 import pl.project13.kanbanery.{R, TR}
@@ -9,7 +9,7 @@ import pl.project13.kanbanery.util.{Intents, KanbaneryPreferences}
 import pl.project13.janbanery.core.JanbaneryFactory
 import android.content.Intent
 
-class LoginActivity extends ScalaActivity
+class LoginActivity extends ScalaSherlockActivity
   with ImplicitContext with ScalaToasts
   with ViewListenerConversions
   with ContentView {

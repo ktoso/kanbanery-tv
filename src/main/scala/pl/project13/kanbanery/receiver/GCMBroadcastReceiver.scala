@@ -4,7 +4,7 @@ import android.content.{Intent, Context, BroadcastReceiver}
 
 class GCMBroadcastReceiver extends BroadcastReceiver {
 
-  override def onReceive(p1: Context, p2: Intent) {
+  override def onReceive(ctx: Context, intent: Intent) {
 
   }
 }

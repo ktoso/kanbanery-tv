@@ -7,32 +7,38 @@
               android:paddingLeft="10dp"
               android:paddingRight="10dp"
               android:background="@drawable/bg">
-    >
 
-    <LinearLayout
+    <com.viewpagerindicator.TitlePageIndicator
+            android:id="@+id/titles"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"/>
+
+
+    <ImageView android:src="@drawable/kanbanery_logo_small"
+               android:layout_height="wrap_content"
+               android:layout_width="wrap_content"
+               android:contentDescription="@string/kanbanery_logo"/>
+
+    <TextView
+            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:paddingTop="10dp"
+            android:text="@string/project"
+            android:textSize="21dp"
+            />
+    <TextView
+            android:id="@+id/board_name"
+            android:textSize="21dp"
+            android:paddingTop="10dp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            />
 
-        <ImageView android:src="@drawable/kanbanery_logo_small"
-                   android:layout_height="wrap_content"
-                   android:layout_width="wrap_content"
-                   android:contentDescription="@string/kanbanery_logo"/>
-
-        <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:paddingTop="10dp"
-                android:text="@string/project"
-                android:textSize="21dp"
-                />
-        <TextView
-                android:id="@+id/board_name"
-                android:textSize="21dp"
-                android:paddingTop="10dp"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                />
-    </LinearLayout>
+    <android.support.v4.view.ViewPager
+            android:id="@+id/column_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
 
     <LinearLayout
             android:id="@+id/columns_wrapper"

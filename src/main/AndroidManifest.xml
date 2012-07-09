@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="pl.project13.kanbanery">
 
-    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="12"/>
+    <uses-sdk android:minSdkVersion="12" android:targetSdkVersion="15"/>
 
     <!-- for sending messages via network -->
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -35,11 +35,10 @@
     <application
             android:icon="@drawable/logo_big"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.NoTitleBar"
             android:debuggable="true">
 
 
-        <activity android:label="@string/app_name" android:name=".activity.LoginActivity">
+        <activity android:label="@string/app_name" android:name=".activity.LoginActivity" android:theme="@style/Theme.Sherlock">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

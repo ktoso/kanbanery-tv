@@ -27,22 +27,32 @@ import pl.project13.janbanery.config.{DefaultConfiguration, Configuration}
 import pl.project13.scala.android.gcm.GoogleCloudMessaging
 
 class BoardActivity extends ScalaActivity
-  with ImplicitContext with ScalaToasts
-  with ViewListenerConversions
-  with DisplayInformation
-  with ContentView
-  with GoogleCloudMessaging {
+with ImplicitContext with ScalaToasts
+with ViewListenerConversions
+with DisplayInformation
+with ContentView
+with GoogleCloudMessaging {
 
   implicit val handler = new Handler
   lazy val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE).asInstanceOf[LayoutInflater]
 
   lazy val BoardView = findView(TR.columns_wrapper)
   lazy val BoardName = findView(TR.board_name)
+  lazy val ColumnPager = findView(TR.column_pager)
+  lazy val TitleIndicator = findView(TR.titles)
 
   val ContentView = TR.layout.board
 
+
   override def onCreate(bundle: Bundle) {
     super.onCreate(bundle)
+
+    //Set the pager with an adapter
+
+
+    //Bind the title indicator to the adapter
+
+    TitleIndicator.setViewPager(ColumnPager)
   }
 
   override def onResume() {
@@ -62,27 +72,29 @@ class BoardActivity extends ScalaActivity
         .usingProject(projectName)
 
       val allCollumns = janbanery.columns.all()
-      allCollumns foreach { column =>
+      allCollumns foreach {
+        column =>
 
-        val allUsers: util.List[User] = janbanery.users().all()
+          val allUsers: util.List[User] = janbanery.users().all()
 
-        val tasksWithOwners = janbanery.tasks.allIn(column).map { task =>
-          val user = allUsers.find( _.getId eq task.getOwnerId).getOrElse(new User.NoOne)
-          val userImage = loadImageFromWebOperations(user.getGravatarUrl)
+          val tasksWithOwners = janbanery.tasks.allIn(column).map {
+            task =>
+              val user = allUsers.find(_.getId eq task.getOwnerId).getOrElse(new User.NoOne)
+              val userImage = loadImageFromWebOperations(user.getGravatarUrl)
 
-          (task, user, userImage)
-        }
+              (task, user, userImage)
+          }
 
-        inUiThread {
-          BoardName := janbanery.projects.current.getName
-          val columnView = inflater.inflate(R.layout.column, null)
-//          columnView.findViewById(R.id.column_icon).asInstanceOf[ImageView].
+          inUiThread {
+            BoardName := janbanery.projects.current.getName
+            val columnView = inflater.inflate(R.layout.column, null)
+            //          columnView.findViewById(R.id.column_icon).asInstanceOf[ImageView].
 
-          val tasksListView = columnView.findViewById(R.id.tasks).asInstanceOf[ListView]
-          tasksListView.setAdapter(new TaskAdapter(this, tasksWithOwners))
+            val tasksListView = columnView.findViewById(R.id.tasks).asInstanceOf[ListView]
+            tasksListView.setAdapter(new TaskAdapter(this, tasksWithOwners))
 
-          BoardView.addView(columnView, widthOfOneColumn(allCollumns.size), displayHeight)
-        }
+            BoardView.addView(columnView, widthOfOneColumn(allCollumns.size), displayHeight)
+          }
       }
     }
   }
