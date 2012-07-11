@@ -23,7 +23,7 @@ object Dependencies {
 //  val janbaneryCore    = "pl.project13.janbanery" % "janbanery-core"    % "1.2"
 //  val janbaneryAndorid = "pl.project13.janbanery" % "janbanery-android" % "1.0"
 
-  val viewPagerIndicator = "com.viewpagerindicator" % "library" % "2.3.1" artifacts(Artifact("library", "apklib", "apklib"))
+//  val viewPagerIndicator = "com.viewpagerindicator" % "library" % "2.3.1" artifacts(Artifact("library", "apklib", "apklib"))
   val actionBarSherlock  = "com.actionbarsherlock"  % "library" % "4.1.0" artifacts(Artifact("library", "apklib", "apklib"))
   val nineOldAndroids    = "com.nineoldandroids"    % "library" % "2.2.0"
 
@@ -60,10 +60,15 @@ object BuildSettings {
 -keep class javax.ws.rs.core.**.*
 -keep class com.sun.ws.**.*
 
+# action bar sherlock
+-keep class android.support.v4.app.** { *; }
+-keep interface android.support.v4.app.** { *; }
+-keep class com.actionbarsherlock.** { *; }
+-keep interface com.actionbarsherlock.** { *; }
+
 -keepclasseswithmembernames class * {
     native <methods>;
-    public <init>(scala.content.Context, scala.util.AttributeSet);
-    public <init>(scala.content.Context, scala.util.AttributeSet, int);
+    public <init>(...);
     public void get*(...);
     public void set*(...);
     public void writeTo(...);
@@ -114,7 +119,7 @@ object BuildSettings {
 
 
   val androidDependencies = Seq(
-    viewPagerIndicator,
+//    viewPagerIndicator,
     actionBarSherlock,
     nineOldAndroids
   )

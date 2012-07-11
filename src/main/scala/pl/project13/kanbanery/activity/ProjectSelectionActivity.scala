@@ -1,6 +1,6 @@
 package pl.project13.kanbanery.activity
 
-import pl.project13.scala.android.activity.{ContentView, ImplicitContext, ScalaActivity}
+import pl.project13.scala.android.activity.{ScalaSherlockActivity, ContentView, ImplicitContext, ScalaActivity}
 import pl.project13.scala.android.toast.ScalaToasts
 import android.os.{Bundle, Handler}
 import pl.project13.kanbanery.{R, TR}
@@ -15,11 +15,15 @@ import pl.project13.scala.android.annotation.{MonsterDueToJavaApiIntegration, As
 import collection.mutable.ListBuffer
 import collection.JavaConversions._
 import collection.JavaConverters._
+import pl.project13.janbanery.core.Janbanery
+import com.actionbarsherlock.ActionBarSherlock
+import com.actionbarsherlock.internal.{ActionBarSherlockNative, ActionBarSherlockCompat}
 
-class ProjectSelectionActivity extends ScalaActivity
-with ImplicitContext with ScalaToasts
-with ViewListenerConversions
-with ContentView {
+class ProjectSelectionActivity extends ScalaSherlockActivity
+  with ViewListenerConversions
+  with ContentView {
+
+  import pl.project13.scala.android.util.DoWithVerb._
 
   implicit val handler = new Handler
   lazy val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE).asInstanceOf[LayoutInflater]
@@ -33,23 +37,42 @@ with ContentView {
 
   val ContentView = TR.layout.workspaces_and_projects
 
+  /** Factory used by onResume, prepared in onCreate - by apiKey or by pass */
+  var newJanbanery: () => Janbanery = _
+
   override def onCreate(bundle: Bundle) {
     super.onCreate(bundle)
+
+    val extras = getIntent.getExtras
+
+    extras.containsKey(Intents.ProjectSelectionActivity.ExtraApiKey) match {
+      case true =>
+        val apiKey = extras.getString(Intents.ProjectSelectionActivity.ExtraLogin)
+        KanbaneryPreferences.apiKey = apiKey
+
+        newJanbanery = JanbaneryFromSharedProperties.getUsingApiKey _
+
+      case false =>
+        val login = extras.getString(Intents.ProjectSelectionActivity.ExtraLogin)
+        val pass = extras.getString(Intents.ProjectSelectionActivity.ExtraPass)
+        KanbaneryPreferences.login = login
+
+        newJanbanery = () => JanbaneryFromSharedProperties.getUsingLoginAndPass(login, pass)
+    }
   }
 
   override def onResume() {
     super.onResume()
 
-    val login = getIntent.getExtras.getString(Intents.ProjectSelectionActivity.ExtraLogin)
-    val pass = getIntent.getExtras.getString(Intents.ProjectSelectionActivity.ExtraPass)
-    KanbaneryPreferences.login = login
-
     inFutureWithProgressDialog {
-      val janbanery = JanbaneryFromSharedProperties.getUsingLoginAndPass(login, pass)
-      KanbaneryPreferences.apiKey = janbanery.getAuthMode.getAuthHeader.getValue
+      startLoginActivityOnException {
+        doWith(newJanbanery()) { janbanery =>
+          KanbaneryPreferences.apiKey = janbanery.getAuthMode.getAuthHeader.getValue
 
-      val workspaces = janbanery.workspaces.all()
-      fillWorkspacesAndProjects(workspaces.toList)
+          val workspaces = janbanery.workspaces.all()
+          fillWorkspacesAndProjects(workspaces.toList)
+        }
+      }
     }
   }
 
@@ -59,14 +82,14 @@ with ContentView {
       this,
 
       mapWorkspaces(workspaces),
-      R.layout.workspaces_workspace,
+      android.R.layout.simple_expandable_list_item_1,
       Array("name"),
-      Array(R.id.workspace_name),
+      Array(android.R.id.text1),
 
       projectsInWorkspace(workspaces),
-      R.layout.workspaces_project,
+      android.R.layout.simple_expandable_list_item_2,
       Array("name"),
-      Array(R.id.project_name)
+      Array(android.R.id.text1)
     )
 
     WorkspacesView setAdapter adapter
@@ -124,15 +147,19 @@ with ContentView {
   }
 
   def openBoardFor(workspace: Workspace, project: Project) {
-    KanbaneryPreferences.workspaceName = workspace.getName
-    KanbaneryPreferences.projectName = project.getName
+    import KanbaneryPreferences._
+
+    workspaceName = workspace.getName
+    projectName = project.getName
 
     inUiThread {
-      (KanbaneryPreferences.workspaceName, KanbaneryPreferences.projectName) match {
-        case (Some(workspaceName), Some(projectName)) =>
-          Intents.BoardActivity.start(KanbaneryPreferences.apiKey, workspaceName, projectName)
+      (apiKey, workspaceName, projectName) match {
+        case (Some(apiKey), Some(workspaceName), Some(projectName)) =>
+          Intents.BoardActivity.start(apiKey, workspaceName, projectName)
           finish()
-        case e => ("No project was selected!" + e).toastLong
+
+        case e =>
+          ("No project was selected!" + e).toastLong
       }
     }
   }

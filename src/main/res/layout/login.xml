@@ -7,16 +7,13 @@
               android:background="@drawable/bg">
 
 
-    <TextView android:id="@+id/smsser_main_logo_title"
-              style="@style/main_logo_text"
-              android:text="@string/kanbanery"/>
-
     <ImageView
             android:id="@+id/kanbanery_logo"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_gravity="center"
             android:src="@drawable/logo_big"
+            android:padding="6dp"
             android:contentDescription="@string/logo"/>
 
 

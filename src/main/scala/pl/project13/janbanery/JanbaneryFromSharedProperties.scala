@@ -9,9 +9,10 @@ object JanbaneryFromSharedProperties {
 
   val RestClient = new AndroidCompatibleRestClient
 
-  def getUsingApiKey()(implicit ctx: Context): Janbanery = {
+  def getUsingApiKey()(implicit ctx: Context): Janbanery = KanbaneryPreferences.apiKey match {
+    case Some(apiKey) =>
     val using = new JanbaneryFactory(RestClient)
-      .connectUsing(KanbaneryPreferences.apiKey)
+      .connectUsing(apiKey)
 
     val janbaneryOnWorkspace = KanbaneryPreferences.workspaceName match {
       case Some(workspaceName) => using.toWorkspace(workspaceName)

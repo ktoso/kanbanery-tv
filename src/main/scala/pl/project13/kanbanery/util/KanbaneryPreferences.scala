@@ -21,7 +21,7 @@ object KanbaneryPreferences {
   }
 
 
-  def apiKey(implicit ctx: Context) = sharedPreferences.getString(KeyApiKey, "")
+  def apiKey(implicit ctx: Context) = Option(sharedPreferences.getString(KeyApiKey, null))
 
   def apiKey_=(key: String)(implicit ctx: Context) {
     withSharedPreferencesEditor { _.putString(KeyApiKey, key) }

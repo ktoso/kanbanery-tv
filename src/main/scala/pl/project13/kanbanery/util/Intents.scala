@@ -1,9 +1,16 @@
 package pl.project13.kanbanery.util
 
 import android.content.{Context, Intent}
-import pl.project13.kanbanery.activity.{ProjectSelectionActivity, BoardActivity}
+import pl.project13.kanbanery.activity.{LoginActivity, ProjectSelectionActivity, BoardActivity}
 
 object Intents {
+
+  object LoginActivity {
+    def start()(implicit ctx: Context) {
+      val intent = new Intent(ctx, classOf[LoginActivity])
+      ctx.startActivity(intent)
+    }
+  }
 
   object BoardActivity {
     val ExtraApiKey = "apiKey"
@@ -22,6 +29,13 @@ object Intents {
   object ProjectSelectionActivity {
     val ExtraLogin = "login"
     val ExtraPass = "pass"
+    val ExtraApiKey = "pass"
+
+    def start(apiKey: String)(implicit ctx: Context) {
+      val intent = new Intent(ctx, classOf[ProjectSelectionActivity])
+      intent.putExtra(ExtraApiKey, apiKey)
+      ctx.startActivity(intent)
+    }
 
     def start(login: String, pass: String)(implicit ctx: Context) {
       val intent = new Intent(ctx, classOf[ProjectSelectionActivity])

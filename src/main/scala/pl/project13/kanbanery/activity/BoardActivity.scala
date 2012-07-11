@@ -1,7 +1,7 @@
 package pl.project13.kanbanery.activity
 
 import collection.JavaConversions._
-import pl.project13.scala.android.activity.{ContentView, ImplicitContext, ScalaActivity}
+import pl.project13.scala.android.activity.{ScalaSherlockActivity, ContentView, ImplicitContext, ScalaActivity}
 import pl.project13.scala.android.toast.ScalaToasts
 import android.os.{Looper, Bundle, Handler}
 import pl.project13.kanbanery.{R, TR}
@@ -9,7 +9,7 @@ import pl.project13.scala.android.util.ViewListenerConversions
 import pl.project13.kanbanery.util.{Intents, KanbaneryPreferences}
 import pl.project13.janbanery.core.JanbaneryFactory
 import android.content.Context
-import android.view.LayoutInflater
+import android.view.{ViewGroup, View, LayoutInflater}
 import android.widget.{ImageView, ListView, TextView}
 import pl.project13.janbanery.android.rest.AndroidCompatibleRestClient
 import android.util.Log
@@ -25,13 +25,14 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.ShapeDrawable
 import pl.project13.janbanery.config.{DefaultConfiguration, Configuration}
 import pl.project13.scala.android.gcm.GoogleCloudMessaging
+import android.support.v4.view.PagerAdapter
+import pl.project13.kanbanery.adapter.DemoPagerAdapter
 
-class BoardActivity extends ScalaActivity
-with ImplicitContext with ScalaToasts
-with ViewListenerConversions
-with DisplayInformation
-with ContentView
-with GoogleCloudMessaging {
+class BoardActivity extends ScalaSherlockActivity
+  with ImplicitContext with ScalaToasts
+  with ViewListenerConversions
+  with DisplayInformation
+  with ContentView {
 
   implicit val handler = new Handler
   lazy val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE).asInstanceOf[LayoutInflater]
@@ -39,20 +40,11 @@ with GoogleCloudMessaging {
   lazy val BoardView = findView(TR.columns_wrapper)
   lazy val BoardName = findView(TR.board_name)
   lazy val ColumnPager = findView(TR.column_pager)
-  lazy val TitleIndicator = findView(TR.titles)
 
   val ContentView = TR.layout.board
 
-
   override def onCreate(bundle: Bundle) {
     super.onCreate(bundle)
-
-    //Set the pager with an adapter
-
-
-    //Bind the title indicator to the adapter
-
-    TitleIndicator.setViewPager(ColumnPager)
   }
 
   override def onResume() {
@@ -111,4 +103,6 @@ with GoogleCloudMessaging {
       case e: Exception => null
     }
   }
+
+  override def onTrimMemory(p1: Int) {}
 }
