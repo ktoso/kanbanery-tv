@@ -5,11 +5,17 @@ import pl.project13.scala.android.util.{Logging, ViewListenerConversions}
 import pl.project13.kanbanery.TypedActivity
 import com.actionbarsherlock.app.SherlockActivity
 import pl.project13.scala.android.toast.ScalaToasts
-import pl.project13.kanbanery.util.Intents
+import com.actionbarsherlock.internal
 
 abstract class ScalaSherlockActivity extends SherlockActivity with KanbaneryActivity
   with TypedActivity
   with ImplicitContext with ScalaToasts
   with ViewListenerConversions
   with ThreadingHelpers
-  with Logging
+  with Logging {
+
+  // proguard workaround ... Details here: https://groups.google.com/forum/?fromgroups#!topic/scala-on-android/V8pgBphHaOg
+  lazy val actionBarSherlockNativeProguardHack = new internal.ActionBarSherlockNative(this, 0)
+  lazy val actionBarSherlockCompatProguardHack = new internal.ActionBarSherlockCompat(this, 0)
+
+}

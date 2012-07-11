@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="pl.project13.kanbanery">
 
-    <uses-sdk android:minSdkVersion="12" android:targetSdkVersion="12"/>
+    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="12"/>
 
     <!-- for sending messages via network -->
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -49,33 +49,26 @@
         <activity android:name=".activity.ProjectSelectionActivity"/>
         <activity android:name=".activity.BoardActivity"/>
 
-        <!--
-          BroadcastReceiver that will receive intents from GCM
-          services and handle them to the custom IntentService.
+        <!--<receiver-->
+                <!--android:name=".receiver.GCMBroadcastReceiver"-->
+                <!--android:permission="com.google.android.c2dm.permission.SEND">-->
+            <!--<intent-filter>-->
+                <!--&lt;!&ndash; Receives the actual messages. &ndash;&gt;-->
+                <!--<action android:name="com.google.android.c2dm.intent.RECEIVE"/>-->
+                <!--&lt;!&ndash; Receives the registration id. &ndash;&gt;-->
+                <!--<action android:name="com.google.android.c2dm.intent.REGISTRATION"/>-->
+                <!--<category android:name="pl.project13.kanbanery."/>-->
+            <!--</intent-filter>-->
+        <!--</receiver>-->
 
-          The com.google.android.c2dm.permission.SEND permission is necessary
-          so only GCM services can send data messages for the app.
-        -->
-        <receiver
-                android:name=".receiver.GCMBroadcastReceiver"
-                android:permission="com.google.android.c2dm.permission.SEND">
-            <intent-filter>
-                <!-- Receives the actual messages. -->
-                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
-                <!-- Receives the registration id. -->
-                <action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
-                <category android:name="pl.project13.kanbanery."/>
-            </intent-filter>
-        </receiver>
+        <!--&lt;!&ndash;-->
+          <!--Application-specific subclass of GCMBaseIntentService that will-->
+          <!--handle received messages.-->
 
-        <!--
-          Application-specific subclass of GCMBaseIntentService that will
-          handle received messages.
-
-          By default, it must be named .GCMIntentService, unless the
-          application uses a custom BroadcastReceiver that redefines its name.
-        -->
-        <service android:name=".service.GCMIntentService"/>
+          <!--By default, it must be named .GCMIntentService, unless the-->
+          <!--application uses a custom BroadcastReceiver that redefines its name.-->
+        <!--&ndash;&gt;-->
+        <!--<service android:name=".service.GCMIntentService"/>-->
     </application>
 
 </manifest>

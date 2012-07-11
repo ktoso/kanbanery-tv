@@ -9,8 +9,10 @@ import pl.project13.kanbanery.util.{Intents, KanbaneryPreferences}
 import pl.project13.janbanery.core.JanbaneryFactory
 import android.content.Intent
 import com.actionbarsherlock.app.SherlockActivity
+import com.actionbarsherlock.{internal, ActionBarSherlock}
+import com.actionbarsherlock.internal.{ActionBarSherlockNative, ActionBarSherlockCompat}
 
-class LoginActivity extends ScalaSherlockActivity
+class LoginActivity extends ScalaActivity
   with ViewListenerConversions
   with ContentView {
 
@@ -45,4 +47,5 @@ class LoginActivity extends ScalaSherlockActivity
       finish()
     }
   }
+
 }
