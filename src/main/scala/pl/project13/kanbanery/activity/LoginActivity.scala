@@ -28,8 +28,14 @@ class LoginActivity extends ScalaActivity
     super.onCreate(bundle)
 
     (KanbaneryPreferences.apiKey, KanbaneryPreferences.workspaceName, KanbaneryPreferences.projectName) match {
-      case (Some(apiKey), Some(workspaceName), Some(projectName)) => Intents.BoardActivity.start(apiKey, workspaceName, projectName); finish()
-      case (Some(apiKey), _, _) => Intents.ProjectSelectionActivity.start(apiKey); finish()
+      case (Some(apiKey), Some(workspaceName), Some(projectName)) =>
+        info("ApiKey and workspace/project present, starting board...")
+        Intents.BoardActivity.start(apiKey, workspaceName, projectName); finish()
+
+      case (Some(apiKey), _, _) =>
+        info("ApiKey present, starting selection activity...")
+        Intents.ProjectSelectionActivity.start(apiKey); finish()
+
       case _ => // continue the login process...
     }
 

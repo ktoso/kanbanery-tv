@@ -27,12 +27,13 @@ import pl.project13.janbanery.config.{DefaultConfiguration, Configuration}
 import pl.project13.scala.android.gcm.GoogleCloudMessaging
 import android.support.v4.view.PagerAdapter
 import pl.project13.kanbanery.adapter.DemoPagerAdapter
+import com.actionbarsherlock.view.Window
+import pl.project13.janbanery.JanbaneryFromSharedProperties
 
 class BoardActivity extends ScalaSherlockActivity
   with ImplicitContext with ScalaToasts
   with ViewListenerConversions
-  with DisplayInformation
-  with ContentView {
+  with DisplayInformation {
 
   implicit val handler = new Handler
   lazy val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE).asInstanceOf[LayoutInflater]
@@ -43,8 +44,12 @@ class BoardActivity extends ScalaSherlockActivity
 
   val ContentView = TR.layout.board
 
+  lazy val janbanery = JanbaneryFromSharedProperties.getUsingApiKey()
+
   override def onCreate(bundle: Bundle) {
+    requestWindowFeature(Window.FEATURE_PROGRESS)
     super.onCreate(bundle)
+    setContentView(ContentView.id)
   }
 
   override def onResume() {
@@ -54,20 +59,22 @@ class BoardActivity extends ScalaSherlockActivity
     val workspaceName = getIntent.getExtras.getString(Intents.BoardActivity.ExtraWorkspaceName)
     val projectName = getIntent.getExtras.getString(Intents.BoardActivity.ExtraProjectName)
 
+    KanbaneryPreferences.apiKey = apiKey
+    KanbaneryPreferences.workspaceName = workspaceName
+    KanbaneryPreferences.projectName = projectName
+
     inFutureWithProgressDialog {
-
-      // todo there's a factory for that
-
-      val restClient = new AndroidCompatibleRestClient
-      val janbanery = new JanbaneryFactory(restClient).connectUsing(new DefaultConfiguration(apiKey))
-        .toWorkspace(workspaceName)
+      janbanery
+        .usingWorkspace(workspaceName)
         .usingProject(projectName)
 
-      val allCollumns = janbanery.columns.all()
-      allCollumns foreach {
+      val allUsers: util.List[User] = janbanery.users().all()
+
+      val allColumns = janbanery.columns.all()
+      allColumns foreach {
         column =>
 
-          val allUsers: util.List[User] = janbanery.users().all()
+          info("Rendering column [%s]", column.getName)
 
           val tasksWithOwners = janbanery.tasks.allIn(column).map {
             task =>
@@ -85,10 +92,16 @@ class BoardActivity extends ScalaSherlockActivity
             val tasksListView = columnView.findViewById(R.id.tasks).asInstanceOf[ListView]
             tasksListView.setAdapter(new TaskAdapter(this, tasksWithOwners))
 
-            BoardView.addView(columnView, widthOfOneColumn(allCollumns.size), displayHeight)
+            BoardView.addView(columnView, widthOfOneColumn(allColumns.size), displayHeight)
           }
       }
     }
+  }
+
+
+  protected override def onDestroy() {
+    super.onDestroy()
+    janbanery.close()
   }
 
   def widthOfOneColumn(columns: Int) =

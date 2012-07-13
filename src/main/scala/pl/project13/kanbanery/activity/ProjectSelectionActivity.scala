@@ -18,10 +18,10 @@ import collection.JavaConverters._
 import pl.project13.janbanery.core.Janbanery
 import com.actionbarsherlock.ActionBarSherlock
 import com.actionbarsherlock.internal.{ActionBarSherlockNative, ActionBarSherlockCompat}
+import java.util
 
 class ProjectSelectionActivity extends ScalaSherlockActivity
-  with ViewListenerConversions
-  with ContentView {
+  with ViewListenerConversions {
 
   import pl.project13.scala.android.util.DoWithVerb._
 
@@ -42,15 +42,16 @@ class ProjectSelectionActivity extends ScalaSherlockActivity
 
   override def onCreate(bundle: Bundle) {
     super.onCreate(bundle)
+    setContentView(ContentView.id)
 
     val extras = getIntent.getExtras
 
     extras.containsKey(Intents.ProjectSelectionActivity.ExtraApiKey) match {
       case true =>
-        val apiKey = extras.getString(Intents.ProjectSelectionActivity.ExtraLogin)
+        val apiKey = extras.getString(Intents.ProjectSelectionActivity.ExtraApiKey)
         KanbaneryPreferences.apiKey = apiKey
 
-        newJanbanery = JanbaneryFromSharedProperties.getUsingApiKey _
+        newJanbanery = () => JanbaneryFromSharedProperties.getUsingApiKey()
 
       case false =>
         val login = extras.getString(Intents.ProjectSelectionActivity.ExtraLogin)
@@ -59,6 +60,8 @@ class ProjectSelectionActivity extends ScalaSherlockActivity
 
         newJanbanery = () => JanbaneryFromSharedProperties.getUsingLoginAndPass(login, pass)
     }
+
+    WorkspacesView.requestFocus()
   }
 
   override def onResume() {
@@ -107,7 +110,7 @@ class ProjectSelectionActivity extends ScalaSherlockActivity
   }
 
   @MonsterDueToJavaApiIntegration
-  def mapWorkspaces(workspaces: List[Workspace]) = {
+  def mapWorkspaces(workspaces: List[Workspace]): util.List[util.Map[String, Any]] = {
     val result = ListBuffer[java.util.Map[String, Any]]()
 
     for (workspace <- workspaces) {
@@ -155,8 +158,7 @@ class ProjectSelectionActivity extends ScalaSherlockActivity
     inUiThread {
       (apiKey, workspaceName, projectName) match {
         case (Some(apiKey), Some(workspaceName), Some(projectName)) =>
-          Intents.BoardActivity.start(apiKey, workspaceName, projectName)
-          finish()
+          Intents.BoardActivity.start(apiKey, workspaceName, projectName); finish()
 
         case e =>
           ("No project was selected!" + e).toastLong

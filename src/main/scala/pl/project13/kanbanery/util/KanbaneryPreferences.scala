@@ -35,7 +35,7 @@ object KanbaneryPreferences {
   }
 
 
-  def projectName(implicit ctx: Context) = Option(sharedPreferences.getString(KeyProjectName, null))
+  def projectName(implicit ctx: Context): Option[String] = Option(sharedPreferences.getString(KeyProjectName, null))
 
   def projectName_=(name: String)(implicit ctx: Context) {
     withSharedPreferencesEditor { _.putString(KeyProjectName, name) }

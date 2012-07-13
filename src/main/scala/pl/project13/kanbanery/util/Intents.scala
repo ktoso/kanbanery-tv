@@ -14,7 +14,7 @@ object Intents {
 
   object BoardActivity {
     val ExtraApiKey = "apiKey"
-    val ExtraWorkspaceName = "projectName"
+    val ExtraWorkspaceName = "workspaceName"
     val ExtraProjectName = "projectName"
 
     def start(apiKey: String, workspaceName: String, projectName: String)(implicit ctx: Context) {
@@ -29,7 +29,7 @@ object Intents {
   object ProjectSelectionActivity {
     val ExtraLogin = "login"
     val ExtraPass = "pass"
-    val ExtraApiKey = "pass"
+    val ExtraApiKey = "apikey"
 
     def start(apiKey: String)(implicit ctx: Context) {
       val intent = new Intent(ctx, classOf[ProjectSelectionActivity])

@@ -29,9 +29,11 @@ trait ThreadingHelpers extends RunnableConversions {
     dialog.show()
 
     inFuture {
-      block
-
-      inUiThread { dialog.hide() }
+      try {
+        block
+      } finally  {
+        inUiThread { dialog.dismiss() }
+      }
     }
   }
 }
