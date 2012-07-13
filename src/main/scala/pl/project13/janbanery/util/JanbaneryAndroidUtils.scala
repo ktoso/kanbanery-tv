@@ -12,7 +12,7 @@ object JanbaneryAndroidUtils {
    * @param colorString the string to assure that it's parseable by android
    * @return the parsed color
    */
-  def toAndroidColor(colorString: String) = {
+  def toAndroidColor(colorString: String): Int = {
     val preparedString = if (colorString.matches("\\#[0-9A-Fa-f]{3}")) {
       (new StringBuilder)
         .append("#")

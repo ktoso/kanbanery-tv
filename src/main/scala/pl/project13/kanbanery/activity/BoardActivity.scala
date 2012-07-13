@@ -21,14 +21,14 @@ import java.util
 import pl.project13.janbanery.resources.User
 import java.net.URL
 import java.io.InputStream
-import android.graphics.drawable.Drawable
-import android.graphics.drawable.ShapeDrawable
+import android.graphics.drawable.{ColorDrawable, Drawable, ShapeDrawable}
 import pl.project13.janbanery.config.{DefaultConfiguration, Configuration}
 import pl.project13.scala.android.gcm.GoogleCloudMessaging
 import android.support.v4.view.PagerAdapter
 import pl.project13.kanbanery.adapter.DemoPagerAdapter
 import com.actionbarsherlock.view.Window
 import pl.project13.janbanery.JanbaneryFromSharedProperties
+import pl.project13.janbanery.util.JanbaneryAndroidUtils
 
 class BoardActivity extends ScalaSherlockActivity
   with ImplicitContext with ScalaToasts
@@ -47,9 +47,11 @@ class BoardActivity extends ScalaSherlockActivity
   lazy val janbanery = JanbaneryFromSharedProperties.getUsingApiKey()
 
   override def onCreate(bundle: Bundle) {
-    requestWindowFeature(Window.FEATURE_PROGRESS)
+    requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY)
     super.onCreate(bundle)
     setContentView(ContentView.id)
+    val color = new ColorDrawable(JanbaneryAndroidUtils.toAndroidColor("#cc000000"))
+    getSupportActionBar.setBackgroundDrawable(color)
   }
 
   override def onResume() {
@@ -63,12 +65,14 @@ class BoardActivity extends ScalaSherlockActivity
     KanbaneryPreferences.workspaceName = workspaceName
     KanbaneryPreferences.projectName = projectName
 
+    setTitle("Kanbanery Tv - " + workspaceName + " / " + projectName)
+
     inFutureWithProgressDialog {
       janbanery
         .usingWorkspace(workspaceName)
         .usingProject(projectName)
 
-      val allUsers: util.List[User] = janbanery.users().all()
+      val allUsers = janbanery.users().all()
 
       val allColumns = janbanery.columns.all()
       allColumns foreach {
@@ -76,12 +80,11 @@ class BoardActivity extends ScalaSherlockActivity
 
           info("Rendering column [%s]", column.getName)
 
-          val tasksWithOwners = janbanery.tasks.allIn(column).map {
-            task =>
-              val user = allUsers.find(_.getId eq task.getOwnerId).getOrElse(new User.NoOne)
-              val userImage = loadImageFromWebOperations(user.getGravatarUrl)
+          val tasksWithOwners = janbanery.tasks.allIn(column).map { task =>
+            val user = allUsers.find(_.getId eq task.getOwnerId).getOrElse(new User.NoOne)
+            val userImage = loadImageFromWebOperations(user.getGravatarUrl)
 
-              (task, user, userImage)
+            (task, user, userImage)
           }
 
           inUiThread {

@@ -19,6 +19,9 @@ import pl.project13.janbanery.core.Janbanery
 import com.actionbarsherlock.ActionBarSherlock
 import com.actionbarsherlock.internal.{ActionBarSherlockNative, ActionBarSherlockCompat}
 import java.util
+import com.actionbarsherlock.view.Window
+import android.graphics.drawable.ColorDrawable
+import pl.project13.janbanery.util.JanbaneryAndroidUtils
 
 class ProjectSelectionActivity extends ScalaSherlockActivity
   with ViewListenerConversions {
@@ -41,8 +44,12 @@ class ProjectSelectionActivity extends ScalaSherlockActivity
   var newJanbanery: () => Janbanery = _
 
   override def onCreate(bundle: Bundle) {
+    requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY)
     super.onCreate(bundle)
     setContentView(ContentView.id)
+
+    val color = new ColorDrawable(JanbaneryAndroidUtils.toAndroidColor("#cccccccc"))
+    getSupportActionBar.setBackgroundDrawable(color)
 
     val extras = getIntent.getExtras
 

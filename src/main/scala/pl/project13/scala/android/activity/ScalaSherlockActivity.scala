@@ -21,9 +21,6 @@ abstract class ScalaSherlockActivity extends SherlockActivity with KanbaneryActi
   lazy val actionBarSherlockCompatProguardHack = new internal.ActionBarSherlockCompat(this, 0)
 
   override def onCreate(bundle: Bundle) {
-    if(ThisDevice.isTv) {
-      requestWindowFeature(Window.FEATURE_NO_TITLE)
-    }
     super.onCreate(bundle)
   }
 
