@@ -3,13 +3,13 @@ package pl.project13.scala.android.activity
 import pl.project13.scala.android.thread.ThreadingHelpers
 import pl.project13.scala.android.util.{ThisDevice, Logging, ViewListenerConversions}
 import pl.project13.kanbanery.TypedActivity
-import com.actionbarsherlock.app.SherlockActivity
+import com.actionbarsherlock.app.{SherlockFragmentActivity, SherlockActivity}
 import pl.project13.scala.android.toast.ScalaToasts
 import com.actionbarsherlock.internal
 import android.os.Bundle
 import com.actionbarsherlock.view.Window
 
-abstract class ScalaSherlockActivity extends SherlockActivity with KanbaneryActivity
+abstract class ScalaSherlockActivity extends SherlockFragmentActivity with KanbaneryActivity
   with TypedActivity
   with ImplicitContext with ScalaToasts
   with ViewListenerConversions

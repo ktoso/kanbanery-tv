@@ -1,34 +1,26 @@
 package pl.project13.kanbanery.activity
 
-import collection.JavaConversions._
-import pl.project13.scala.android.activity.{ScalaSherlockActivity, ContentView, ImplicitContext, ScalaActivity}
+import pl.project13.scala.android.activity.{ScalaSherlockActivity, ImplicitContext}
 import pl.project13.scala.android.toast.ScalaToasts
-import android.os.{Looper, Bundle, Handler}
+import android.os.{Bundle, Handler}
 import pl.project13.kanbanery.{R, TR}
-import pl.project13.scala.android.util.ViewListenerConversions
-import pl.project13.kanbanery.util.{Intents, KanbaneryPreferences}
-import pl.project13.janbanery.core.JanbaneryFactory
+import pl.project13.scala.android.util.{ThisDevice, ViewListenerConversions}
+import pl.project13.kanbanery.util.{KanbaneryTitle, Intents, KanbaneryPreferences}
 import android.content.Context
-import android.view.{ViewGroup, View, LayoutInflater}
-import android.widget.{ImageView, ListView, TextView}
-import pl.project13.janbanery.android.rest.AndroidCompatibleRestClient
-import android.util.Log
+import android.view.{ViewGroup, LayoutInflater}
 import collection.JavaConversions._
-import collection.JavaConverters._
-import android.view.ViewGroup.LayoutParams
 import pl.project13.scala.android.tv.DisplayInformation
-import java.util
 import pl.project13.janbanery.resources.User
 import java.net.URL
 import java.io.InputStream
-import android.graphics.drawable.{ColorDrawable, Drawable, ShapeDrawable}
-import pl.project13.janbanery.config.{DefaultConfiguration, Configuration}
-import pl.project13.scala.android.gcm.GoogleCloudMessaging
-import android.support.v4.view.PagerAdapter
-import pl.project13.kanbanery.adapter.DemoPagerAdapter
+import android.graphics.drawable.{ColorDrawable, Drawable}
 import com.actionbarsherlock.view.Window
 import pl.project13.janbanery.JanbaneryFromSharedProperties
 import pl.project13.janbanery.util.JanbaneryAndroidUtils
+import android.support.v4.app.FragmentManager
+import android.widget.LinearLayout.LayoutParams
+import android.widget.{ImageView, ListView}
+import pl.project13.kanbanery.fragment.ColumnFragment
 
 class BoardActivity extends ScalaSherlockActivity
   with ImplicitContext with ScalaToasts
@@ -36,11 +28,11 @@ class BoardActivity extends ScalaSherlockActivity
   with DisplayInformation {
 
   implicit val handler = new Handler
-  lazy val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE).asInstanceOf[LayoutInflater]
+  lazy val Inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE).asInstanceOf[LayoutInflater]
 
-  lazy val BoardView = findView(TR.columns_wrapper)
-  lazy val BoardName = findView(TR.board_name)
-  lazy val ColumnPager = findView(TR.column_pager)
+//  lazy val PageIndicator = findView(TR.page_indicator)
+  lazy val ColumnsContainer = findView(TR.column_pager)
+  lazy val VisibleColumnsIndicator = findView(TR.page_indicator)
 
   val ContentView = TR.layout.board
 
@@ -50,8 +42,10 @@ class BoardActivity extends ScalaSherlockActivity
     requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY)
     super.onCreate(bundle)
     setContentView(ContentView.id)
-    val color = new ColorDrawable(JanbaneryAndroidUtils.toAndroidColor("#cc000000"))
+    val color = new ColorDrawable(JanbaneryAndroidUtils.toAndroidColor("#aa000000"))
     getSupportActionBar.setBackgroundDrawable(color)
+
+    findView(TR.main).setPadding(0, getSupportActionBar.getHeight, 0, 0)
   }
 
   override def onResume() {
@@ -65,7 +59,7 @@ class BoardActivity extends ScalaSherlockActivity
     KanbaneryPreferences.workspaceName = workspaceName
     KanbaneryPreferences.projectName = projectName
 
-    setTitle("Kanbanery Tv - " + workspaceName + " / " + projectName)
+    KanbaneryTitle.set(workspace = workspaceName, project = projectName)
 
     inFutureWithProgressDialog {
       janbanery
@@ -73,30 +67,64 @@ class BoardActivity extends ScalaSherlockActivity
         .usingProject(projectName)
 
       val allUsers = janbanery.users().all()
+      val allColumns = janbanery.columns.all().toList
 
-      val allColumns = janbanery.columns.all()
-      allColumns foreach {
-        column =>
+      inUiThread { VisibleColumnsIndicator.setColumns(allColumns) }
 
-          info("Rendering column [%s]", column.getName)
+//      val supportFragmentManager = getSupportFragmentManager
+//      val columnAdapter = new ColumnAdapter(janbanery, supportFragmentManager, allColumns.toList)
 
-          val tasksWithOwners = janbanery.tasks.allIn(column).map { task =>
-            val user = allUsers.find(_.getId eq task.getOwnerId).getOrElse(new User.NoOne)
-            val userImage = loadImageFromWebOperations(user.getGravatarUrl)
 
-            (task, user, userImage)
+      allColumns foreach { column =>
+        info("Rendering column [%s]", column.getName)
+
+        val tasksWithOwners = janbanery.tasks.allIn(column).map { task =>
+          val user = allUsers.find(_.getId eq task.getOwnerId).getOrElse(new User.NoOne)
+          val userImage = loadImageFromWebOperations(user.getGravatarUrl)
+
+          (task, user, userImage)
+        }
+
+//        inUiThread {
+//          val columnView = inflater.inflate(R.layout.column, null)
+          //          columnView.findViewById(R.id.column_icon).asInstanceOf[ImageView].
+//
+//          val tasksListView = columnView.findViewById(R.id.tasks).asInstanceOf[ListView]
+//          tasksListView.setAdapter(new TaskAdapter(this, tasksWithOwners))
+//
+//          ColumnPager.addView(columnView, widthOfOneColumn(allColumns.size), displayHeight)
+//          columns += columnView
+//        }
+//      }
+      }
+
+      inUiThread {
+        if(ThisDevice.isTv){
+
+          allColumns foreach { column =>
+            val tx = getSupportFragmentManager.beginTransaction()
+            val columnFragment = ColumnFragment.newInstance(janbanery, column, allColumns.size)
+
+  //          val columnView = Inflater.inflate(R.layout.column, null)
+  //
+  //          val tasksListView = columnView.findViewById(R.id.tasks).asInstanceOf[ListView]
+  //          tasksListView.setAdapter(new TaskAdapter(this, tasksWithOwners))
+  //
+  //          ColumnsContainer.addView(columnView, widthOfOneColumn(allColumns.size), displayHeight)
+
+            tx.add(ColumnsContainer.getId, columnFragment, "column-" + column.getId)
+            tx.commit()
           }
 
-          inUiThread {
-            BoardName := janbanery.projects.current.getName
-            val columnView = inflater.inflate(R.layout.column, null)
-            //          columnView.findViewById(R.id.column_icon).asInstanceOf[ImageView].
+        } else {
+        // for phones
+//          ColumnPager.setAdapter(columnAdapter)
+          ColumnsContainer.setLayoutParams(new LayoutParams(widthOfOneColumn(allColumns.size), ViewGroup.LayoutParams.FILL_PARENT))
+//          PageIndicator.setViewPager(ColumnPager)
+        }
 
-            val tasksListView = columnView.findViewById(R.id.tasks).asInstanceOf[ListView]
-            tasksListView.setAdapter(new TaskAdapter(this, tasksWithOwners))
 
-            BoardView.addView(columnView, widthOfOneColumn(allColumns.size), displayHeight)
-          }
+//      }
       }
     }
   }

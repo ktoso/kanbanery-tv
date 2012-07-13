@@ -4,34 +4,27 @@
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
               android:orientation="vertical"
-              android:paddingLeft="10dp"
-              android:paddingRight="10dp"
               android:background="@drawable/bg">
 
     <!--<com.viewpagerindicator.TitlePageIndicator-->
-            <!--android:id="@+id/titles"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_width="fill_parent"/>-->
+    <!--android:id="@+id/page_indicator"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_width="wrap_content"/>-->
 
-    <TextView
-            android:id="@+id/board_name"
-            android:textSize="21dp"
-            android:paddingTop="10dp"
+    <pl.project13.kanbanery.view.VisibleColumnsIndicator
+            android:id="@+id/page_indicator"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
             />
 
-    <android.support.v4.view.ViewPager
+
+    <ListView
             android:id="@+id/column_pager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
-
-    <LinearLayout
-            android:id="@+id/columns_wrapper"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             />
+
 
 </LinearLayout>

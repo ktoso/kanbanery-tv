@@ -22,8 +22,8 @@ class TaskAdapter(ctx: Context, tasks: Seq[(Task, User, Drawable)])
     val image = tasks.get(position)._3
 
     v.find[TextView](R.id.task_name) := task.getTitle
-    v.find[TextView](R.id.task_type) := task.getTaskTypeName
-    v.find[TextView](R.id.owner_name) := List(user.getFirstName, user.getLastName).mkString(" ")
+//    v.find[TextView](R.id.task_type) := task.getTaskTypeName
+//    v.find[TextView](R.id.owner_name) := List(user.getFirstName, user.getLastName).mkString(" ")
     v.find[ImageView](R.id.owner_image) := image
 
     v
