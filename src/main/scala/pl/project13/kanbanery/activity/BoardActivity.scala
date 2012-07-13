@@ -40,6 +40,8 @@ class BoardActivity extends ScalaSherlockActivity
 
   override def onCreate(bundle: Bundle) {
     requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY)
+    requestWindowFeature(Window.FEATURE_PROGRESS)
+
     super.onCreate(bundle)
     setContentView(ContentView.id)
     val color = new ColorDrawable(JanbaneryAndroidUtils.toAndroidColor("#aa000000"))
@@ -74,8 +76,12 @@ class BoardActivity extends ScalaSherlockActivity
 //      val supportFragmentManager = getSupportFragmentManager
 //      val columnAdapter = new ColumnAdapter(janbanery, supportFragmentManager, allColumns.toList)
 
-
+      var columnsFetchProgress = 1
       allColumns foreach { column =>
+        handler.post {
+          setSupportProgress(columnsFetchProgress / allColumns.size)
+        }
+
         info("Rendering column [%s]", column.getName)
 
         val tasksWithOwners = janbanery.tasks.allIn(column).map { task =>
@@ -96,6 +102,7 @@ class BoardActivity extends ScalaSherlockActivity
 //          columns += columnView
 //        }
 //      }
+        columnsFetchProgress += 1
       }
 
       inUiThread {
