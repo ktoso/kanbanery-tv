@@ -1,4 +1,4 @@
-package pl.project13.scala.android.tv
+package pl.project13.scala.android.util
 
 import android.app.Activity
 import android.graphics.Point

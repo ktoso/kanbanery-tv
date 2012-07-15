@@ -5,7 +5,7 @@ import pl.project13.scala.android.toast.ScalaToasts
 import android.os.{Bundle, Handler}
 import pl.project13.kanbanery.{R, TR}
 import pl.project13.scala.android.util.{Logging, ViewListenerConversions}
-import pl.project13.kanbanery.util.{Intents, KanbaneryPreferences}
+import pl.project13.kanbanery.util.{KanbaneryTitle, Intents, KanbaneryPreferences}
 import pl.project13.janbanery.core.JanbaneryFactory
 import android.content.Intent
 import com.actionbarsherlock.app.SherlockActivity
@@ -26,6 +26,7 @@ class LoginActivity extends ScalaActivity
 
   override def onCreate(bundle: Bundle) {
     super.onCreate(bundle)
+    KanbaneryTitle.set()
 
     (KanbaneryPreferences.apiKey, KanbaneryPreferences.workspaceName, KanbaneryPreferences.projectName) match {
       case (Some(apiKey), Some(workspaceName), Some(projectName)) =>

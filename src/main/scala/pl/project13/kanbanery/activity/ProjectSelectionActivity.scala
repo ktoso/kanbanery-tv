@@ -48,7 +48,7 @@ class ProjectSelectionActivity extends ScalaSherlockActivity
     super.onCreate(bundle)
     setContentView(ContentView.id)
 
-    val color = new ColorDrawable(JanbaneryAndroidUtils.toAndroidColor("#cccccccc"))
+    val color = new ColorDrawable(JanbaneryAndroidUtils.toAndroidColor("#aa000000"))
     getSupportActionBar.setBackgroundDrawable(color)
 
     val extras = getIntent.getExtras

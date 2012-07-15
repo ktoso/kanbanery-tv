@@ -1,7 +1,8 @@
 package pl.project13.kanbanery.util
 
 import android.content.{Context, Intent}
-import pl.project13.kanbanery.activity.{LoginActivity, ProjectSelectionActivity, BoardActivity}
+import pl.project13.kanbanery.activity.{BoardPhoneActivity, LoginActivity, ProjectSelectionActivity, BoardActivity}
+import pl.project13.scala.android.util.ThisDevice
 
 object Intents {
 
@@ -13,12 +14,19 @@ object Intents {
   }
 
   object BoardActivity {
+
     val ExtraApiKey = "apiKey"
     val ExtraWorkspaceName = "workspaceName"
     val ExtraProjectName = "projectName"
 
     def start(apiKey: String, workspaceName: String, projectName: String)(implicit ctx: Context) {
-      val intent = new Intent(ctx, classOf[BoardActivity])
+      val target = if(ThisDevice.isTv) {
+        classOf[BoardActivity]
+      } else {
+        classOf[BoardPhoneActivity]
+      }
+
+      val intent = new Intent(ctx, target)
       intent.putExtra(ExtraApiKey, apiKey)
       intent.putExtra(ExtraWorkspaceName, workspaceName)
       intent.putExtra(ExtraProjectName, projectName)

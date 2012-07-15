@@ -4,7 +4,7 @@
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
               android:orientation="vertical"
-              android:padding="25dp"
+              android:paddingTop="40dp"
               android:background="@drawable/bg">
 
     <!--<com.viewpagerindicator.TitlePageIndicator-->
@@ -24,7 +24,7 @@
             android:layout_height="fill_parent"
             android:layout_width="fill_parent">
         <LinearLayout
-                android:id="@+id/column_pager"
+                android:id="@+id/columns_container"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
