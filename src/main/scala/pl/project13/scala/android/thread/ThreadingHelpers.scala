@@ -23,6 +23,10 @@ trait ThreadingHelpers extends RunnableConversions with Logging {
     inFuture[T]()(block)(ctx)
   }
 
+  def inFuture(whenComplete: => Unit)(block: => Unit)(implicit ctx: Context) : SettableFuture[Unit] = {
+    inFuture[Unit]((p: Unit) => whenComplete)(block)(ctx)
+  }
+
   def inFuture[T](whenComplete: T => Unit = (t: T) => ())(block: => T)(implicit ctx: Context) : SettableFuture[T] = {
     val future = SettableFuture.create[T]
 

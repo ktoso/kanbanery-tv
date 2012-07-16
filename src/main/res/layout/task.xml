@@ -1,46 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                style="@style/task_element"
-                android:background="@drawable/border"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="@drawable/task_background"
         >
 
-    <ImageView
-            android:id="@+id/owner_image"
-            android:layout_height="wrap_content"
+    <RelativeLayout
             android:layout_width="wrap_content"
-            style="@style/task_element"
-            android:text="@string/task_owner"
-            android:contentDescription="Owner"/>
+            android:layout_height="fill_parent" android:id="@+id/relativeLayout"
+            android:layout_gravity="left|center_vertical">
+        <TextView
+                android:id="@+id/task_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/task_type"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"/>
+        <ImageView
+                android:id="@+id/owner_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/task_type"
+                android:src="@drawable/no_user"
+                android:contentDescription="@string/owner_image"/>
+        <TextView
+                android:id="@+id/task_name"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/task_title"
+                android:layout_below="@+id/task_type"
+                android:layout_toLeftOf="@id/owner_image"
+                android:layout_alignLeft="@id/relativeLayout"/>
+    </RelativeLayout>
 
-    <!--<TextView-->
-            <!--android:id="@+id/owner_name"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--style="@style/task_element"-->
-            <!--android:text="@string/task_owner"-->
-            <!--android:contentDescription="Owner"/>-->
-
-    <!--<TextView android:id="@+id/task_type"-->
-              <!--android:layout_height="wrap_content"-->
-              <!--android:layout_width="wrap_content"-->
-              <!--android:layout_alignParentTop="true"-->
-              <!--android:layout_alignParentRight="true"-->
-              <!--style="@style/task_element"-->
-              <!--android:text="@string/task_type"-->
-            <!--/>-->
-
-    <TextView android:id="@+id/task_name"
-              android:layout_height="wrap_content"
+    <TextView android:id="@+id/deadline"
               android:layout_width="wrap_content"
-              style="@style/task_element"
-              android:text="@string/task_name"
+              android:layout_height="wrap_content"
+              android:text="@string/deadline"
+              android:visibility="gone"
             />
-
-
-</RelativeLayout>
+</LinearLayout>

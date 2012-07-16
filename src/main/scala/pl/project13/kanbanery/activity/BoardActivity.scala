@@ -68,14 +68,23 @@ class BoardActivity extends ScalaSherlockActivity
       inUiThread { VisibleColumnsIndicator.setColumns(allColumns) }
 
       inUiThread {
+        setSupportProgress(0)
+        val eachColumnGivesXPercent = 100 / allColumns.size
+
         ColumnsContainer.removeAllViews()
 
+        var loadedColumnCount = 0
         allColumns foreach { column =>
-          val tx = getSupportFragmentManager.beginTransaction()
-          val columnFragment = ColumnFragment.newInstance(janbanery, column, allColumns.size)
+          handler.post {
+            val tx = getSupportFragmentManager.beginTransaction()
+            val columnFragment = ColumnFragment.newInstance(janbanery, column, allColumns.size)
 
-          tx.add(ColumnsContainer.getId, columnFragment, "column-" + column.getId)
-          tx.commit()
+            tx.add(ColumnsContainer.getId, columnFragment, "column-" + column.getId)
+            tx.commit()
+
+            loadedColumnCount += 1
+            setSupportProgressPercent(loadedColumnCount * eachColumnGivesXPercent)
+          }
         }
       }
     }

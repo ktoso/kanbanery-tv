@@ -8,7 +8,7 @@ import android.widget.FrameLayout.LayoutParams
 import pl.project13.janbanery.JanbaneryFromSharedProperties
 import pl.project13.janbanery.core.Janbanery
 import pl.project13.scala.android.util._
-import pl.project13.janbanery.resources.{Task, User, Column}
+import pl.project13.janbanery.resources.{TaskType, Task, User, Column}
 import pl.project13.kanbanery.R
 import pl.project13.kanbanery.activity.TaskAdapter
 import collection.JavaConversions._
@@ -28,7 +28,6 @@ class ColumnFragment(
   with ViewConversions
   with ThreadingHelpers
   with InstanceStateHelpers
-  with KanbaneryBoardView
   with Logging {
 
   // will be called when screen orientation is switched
@@ -66,34 +65,37 @@ class ColumnFragment(
   override def onCreateView(inflater: LayoutInflater, container: ViewGroup, savedInstanceState: Bundle): View = {
     val columnView = inflater.inflate(R.layout.column, null).asInstanceOf[LinearLayout]
 
-    type Data = List[(Task, User, Drawable)]
+    type Data = (List[(Task, User, Drawable)], List[TaskType])
     inFuture[Data](whenComplete = initUi(columnView, _: Data)) {
       val tasks = janbanery.tasks.allIn(column)
       val full = tasks map { task =>
-        info("Preparing hydrated task: %s", task.getTitle)
-
         val user = allUsers find(_.getId eq task.getOwnerId) getOrElse new User.NoOne
         val userImage = Drawables.cachedFrom(user.getGravatarUrl)
 
         (task, user, userImage)
       }
 
-      full.toList
+      val taskTypes = janbanery.taskTypes.all()
+
+      (full.toList, taskTypes.toList)
     }
 
     columnView
   }
 
   @AssuresUiThread
-  def initUi(columnView: LinearLayout, tasksWithOwners: List[(Task, User, Drawable)]) {
+  def initUi(columnView: LinearLayout, data: (List[(Task, User, Drawable)], List[TaskType])) {
     inUiThread {
+      val tasksWithOwners = data._1
+      val taskTypes = data._2
+
       val columnName = columnView.find[TextView](R.id.column_label)
       columnName := mkName(column, tasksWithOwners.size)
 
       val tasksListView = columnView.find[ListView](R.id.tasks)
-      tasksListView.setAdapter(new TaskAdapter(getActivity, tasksWithOwners))
+      tasksListView.setAdapter(new TaskAdapter(getActivity, tasksWithOwners, taskTypes))
 
-      columnView setLayoutParams new LayoutParams(widthOfOneColumn(columns), ViewGroup.LayoutParams.FILL_PARENT)
+      columnView setLayoutParams new LayoutParams(KanbaneryBoardView.widthOfOneColumn(columns), ViewGroup.LayoutParams.FILL_PARENT)
 
       info("Updated column [%s] with [%s] tasks", column.getName, tasksWithOwners.size)
     }
