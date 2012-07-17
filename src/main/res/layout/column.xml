@@ -5,14 +5,25 @@
               android:orientation="vertical"
         >
 
-    <TextView android:id="@+id/column_label"
-              android:layout_height="wrap_content"
-              android:layout_width="fill_parent"
-              android:text="@string/default_column_label"
-              android:paddingTop="4dp"
-              android:paddingBottom="4dp"
-              android:gravity="center_vertical|center_horizontal"
-            />
+    <!-- todo optimize -->
+    <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:orientation="horizontal"
+            >
+        <TextView android:id="@+id/column_label"
+                  android:layout_height="wrap_content"
+                  android:layout_width="fill_parent"
+                  android:text="@string/loading_column"
+                  android:paddingTop="4dp"
+                  android:paddingBottom="4dp"
+                  android:gravity="center_vertical|center_horizontal"
+                />
+        <ImageView android:src="@drawable/ajax_loader"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:contentDescription="@string/loading"/>
+    </LinearLayout>
 
     <ListView android:id="@+id/tasks"
               android:layout_height="fill_parent"

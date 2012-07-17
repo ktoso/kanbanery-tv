@@ -24,7 +24,7 @@
     <string name="dont_have_an_account_yet_register">Don\'t have an account yet? Register for free at kanbanery.com</string>
     <string name="kanbanery_logo">kanbanery logo</string>
     <string name="project">Project:</string>
-    <string name="default_column_label">Some column</string>
+    <string name="loading_column">Loading column…</string>
     <string name="logo_description">Kanbananery logo</string>
     <string name="task_type">Task type</string>
     <string name="task_name">Task name</string>
@@ -35,5 +35,13 @@
     <string name="deadline">Deadline:</string>
     <string name="task_title">New Text</string>
     <string name="owner_image">Owner Image</string>
+    <string name="task_id">Task ID</string>
+    <string name="task_information">Task Information</string>
+    <string name="loading">Loading...</string>
+    <string name="new_comment">New Comment</string>
+    <string name="created_by">Created By</string>
+    <string name="lorem_ipsum_long">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet,
+        consectetur adipiscing elit.
+    </string>
 
 </resources>

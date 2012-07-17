@@ -8,28 +8,37 @@ import collection.JavaConversions._
 import pl.project13.kanbanery.R
 import pl.project13.janbanery.core.Janbanery
 import android.graphics.drawable.Drawable
-import pl.project13.scala.android.util.{ViewListenerConversions, ViewConversions}
-import pl.project13.janbanery.util.JanbaneryAndroidUtils
+import pl.project13.scala.android.util.{Logging, ViewListenerConversions, ViewConversions}
+import pl.project13.janbanery.util.{JanbaneryConversions, JanbaneryAndroidUtils}
+import pl.project13.kanbanery.util.Intents
 
 class TaskAdapter(ctx: Context, tasks: Seq[(Task, User, Drawable)], taskTypes: List[TaskType])
   extends ArrayAdapter(ctx, R.layout.task, R.id.task_name, tasks)
-  with ViewListenerConversions {
+  with ViewListenerConversions with JanbaneryConversions with Logging {
+
+  type TaskData = (Task, User, Drawable)
 
   override def getView(position: Int, convertView: View, parent: ViewGroup) = {
     val v = super.getView(position, convertView, parent)
 
-    val task = tasks.get(position)._1
-    val user = tasks.get(position)._2
-    val image = tasks.get(position)._3
+    val taskData = tasks.get(position)
+    val task = taskData._1
+    val user = taskData._2
+    val image = taskData._3
 
+    // get views
     val taskNameView = v.find[TextView](R.id.task_name)
     val taskTypeTextView = v.find[TextView](R.id.task_type)
     val ownerImageView = v.find[ImageView](R.id.owner_image)
 
+    // set stuff
     taskNameView := task.getTitle
     ownerImageView := image
     initTaskTypeView(taskTypeTextView, task)
-    initTaskOnClickListener(v)
+
+    // listeners
+    initTaskOnClickListener(v, taskData)
+    initTaskOnLongClickListener(v, taskData)
 
     v
   }
@@ -38,16 +47,25 @@ class TaskAdapter(ctx: Context, tasks: Seq[(Task, User, Drawable)], taskTypes: L
     val taskTypeId = task.getTaskTypeId
     val taskType = taskTypes.find(_.getId == taskTypeId)
 
-    taskType foreach { tt =>
-      taskTypeTextView := tt.getName
-      taskTypeTextView.setBackgroundColor(JanbaneryAndroidUtils.toAndroidColor(tt.getBackgroundColor))
-      taskTypeTextView.setTextColor(JanbaneryAndroidUtils.toAndroidColor(tt.getTextColor))
+    taskType foreach { _.applyTo(taskTypeTextView) }
+  }
+
+  def initTaskOnClickListener(taskView: View, taskData: TaskData) {
+    info("Initialize onClick listener for: [%s]", taskData._1.getTitle)
+    taskView onClick {
+      info("Clicked on task: [%s]", taskData._1.getTitle)
+      showTaskDetailsView(taskData)
     }
   }
 
-  def initTaskOnClickListener(taskView: View) {
-    taskView onClick {
-
+  def initTaskOnLongClickListener(taskView: View, taskData: TaskData) {
+    taskView onLongClick {
+      // todo show optionbox, or better actionbar awesomeness
+      true
     }
+  }
+
+  def showTaskDetailsView(data: TaskData) {
+    Intents.TaskDetailsDialogActivity.start(data)(ctx)
   }
 }

@@ -50,24 +50,28 @@
         <activity android:name=".activity.BoardActivity"/>
         <activity android:name=".activity.BoardPhoneActivity"/>
 
+        <!-- dialogs -->
+        <activity android:name=".activity.dialog.TaskDetailsDialogActivity"
+                  android:theme="@android:style/Theme.Dialog"/>
+
         <!--<receiver-->
-                <!--android:name=".receiver.GCMBroadcastReceiver"-->
-                <!--android:permission="com.google.android.c2dm.permission.SEND">-->
-            <!--<intent-filter>-->
-                <!--&lt;!&ndash; Receives the actual messages. &ndash;&gt;-->
-                <!--<action android:name="com.google.android.c2dm.intent.RECEIVE"/>-->
-                <!--&lt;!&ndash; Receives the registration id. &ndash;&gt;-->
-                <!--<action android:name="com.google.android.c2dm.intent.REGISTRATION"/>-->
-                <!--<category android:name="pl.project13.kanbanery."/>-->
-            <!--</intent-filter>-->
+        <!--android:name=".receiver.GCMBroadcastReceiver"-->
+        <!--android:permission="com.google.android.c2dm.permission.SEND">-->
+        <!--<intent-filter>-->
+        <!--&lt;!&ndash; Receives the actual messages. &ndash;&gt;-->
+        <!--<action android:name="com.google.android.c2dm.intent.RECEIVE"/>-->
+        <!--&lt;!&ndash; Receives the registration id. &ndash;&gt;-->
+        <!--<action android:name="com.google.android.c2dm.intent.REGISTRATION"/>-->
+        <!--<category android:name="pl.project13.kanbanery."/>-->
+        <!--</intent-filter>-->
         <!--</receiver>-->
 
         <!--&lt;!&ndash;-->
-          <!--Application-specific subclass of GCMBaseIntentService that will-->
-          <!--handle received messages.-->
+        <!--Application-specific subclass of GCMBaseIntentService that will-->
+        <!--handle received messages.-->
 
-          <!--By default, it must be named .GCMIntentService, unless the-->
-          <!--application uses a custom BroadcastReceiver that redefines its name.-->
+        <!--By default, it must be named .GCMIntentService, unless the-->
+        <!--application uses a custom BroadcastReceiver that redefines its name.-->
         <!--&ndash;&gt;-->
         <!--<service android:name=".service.GCMIntentService"/>-->
     </application>

@@ -18,6 +18,7 @@ import pl.project13.scala.android.annotation.{MonsterDueToJavaApiIntegration, As
 import scala.Some
 import javax.annotation.Nullable
 import pl.project13.kanbanery.common.KanbaneryBoardView
+import pl.project13.janbanery.util.JanbaneryConversions
 
 /** vars are used as they may be reset when the screen orientation changes */
 class ColumnFragment(
@@ -25,9 +26,7 @@ class ColumnFragment(
     @Nullable var _column: Column,
     var columns: Int
   ) extends Fragment
-  with ViewConversions
-  with ThreadingHelpers
-  with InstanceStateHelpers
+  with ViewConversions with ThreadingHelpers with InstanceStateHelpers
   with Logging {
 
   // will be called when screen orientation is switched
