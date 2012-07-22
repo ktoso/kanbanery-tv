@@ -37,11 +37,17 @@
     <string name="owner_image">Owner Image</string>
     <string name="task_id">Task ID</string>
     <string name="task_information">Task Information</string>
-    <string name="loading">Loading...</string>
+    <string name="loading">Loading…</string>
     <string name="new_comment">New Comment</string>
     <string name="created_by">Created By</string>
     <string name="lorem_ipsum_long">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet,
         consectetur adipiscing elit.
     </string>
+
+    <!-- actions -->
+    <string name="logout">Logout</string>
+    <string name="move_left">To left column</string>
+    <string name="move_to_selected">To selected column</string>
+    <string name="move_right">To right column</string>
 
 </resources>

@@ -2,23 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
-              android:orientation="vertical"
-        >
+              android:orientation="vertical">
 
-    <!-- todo optimize -->
     <LinearLayout
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
             android:orientation="horizontal"
             >
-        <TextView android:id="@+id/column_label"
-                  android:layout_height="wrap_content"
-                  android:layout_width="fill_parent"
-                  android:text="@string/loading_column"
-                  android:paddingTop="4dp"
-                  android:paddingBottom="4dp"
-                  android:gravity="center_vertical|center_horizontal"
-                />
+        <!--<TextView android:id="@+id/column_label"-->
+                  <!--android:layout_height="wrap_content"-->
+                  <!--android:layout_width="fill_parent"-->
+                  <!--android:text="@string/loading_column"-->
+                  <!--android:paddingTop="4dp"-->
+                  <!--android:paddingBottom="4dp"-->
+                  <!--android:gravity="center_vertical|center_horizontal"-->
+                <!--/>-->
         <ImageView android:src="@drawable/ajax_loader"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"

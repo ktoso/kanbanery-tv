@@ -4,12 +4,12 @@
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="20sp"
         android:background="@drawable/bg"
         >
 
     <ExpandableListView
             android:id="@+id/workspaces"
+            android:layout_marginTop="@dimen/action_bar_height"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:cacheColorHint="@android:color/transparent"

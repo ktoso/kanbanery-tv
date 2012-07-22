@@ -10,6 +10,12 @@ import pl.project13.kanbanery.activity.dialog.TaskDetailsDialogActivity
 object Intents {
 
   object LoginActivity {
+
+    def logout()(implicit ctx: Context) {
+      KanbaneryPreferences.logout()
+      start()
+    }
+
     def start()(implicit ctx: Context) {
       val intent = new Intent(ctx, classOf[LoginActivity])
       ctx.startActivity(intent)

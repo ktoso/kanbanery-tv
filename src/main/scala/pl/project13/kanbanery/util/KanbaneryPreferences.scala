@@ -1,8 +1,6 @@
 package pl.project13.kanbanery.util
 
 import android.content.{SharedPreferences, Context}
-import java.util
-import pl.project13.scala.android.util.Logging
 
 object KanbaneryPreferences {
 
@@ -13,6 +11,11 @@ object KanbaneryPreferences {
 
   val KeyWorkspaceName = "workspace-name"
   val KeyProjectName = "project-id"
+
+  /** Clears all information required to login to Kanbanery */
+  def logout()(implicit ctx: Context) {
+    withSharedPreferencesEditor { _.clear().commit() }
+  }
 
   def login(implicit ctx: Context) = sharedPreferences.getString(KeyLogin, "")
 

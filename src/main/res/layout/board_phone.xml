@@ -8,11 +8,12 @@
 
     <com.viewpagerindicator.TitlePageIndicator
             android:id="@+id/page_indicator"
+            android:layout_marginTop="@dimen/action_bar_height"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"/>
 
     <android.support.v4.view.ViewPager
-            android:id="@+id/columns_container"
+            android:id="@+id/columns_pager"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             />

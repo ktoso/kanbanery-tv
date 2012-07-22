@@ -10,7 +10,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import collection.JavaConversions._
 import android.graphics.drawable.ColorDrawable
-import com.actionbarsherlock.view.Window
+import com.actionbarsherlock.view.{MenuItem, Window}
 import pl.project13.janbanery.JanbaneryFromSharedProperties
 import pl.project13.janbanery.util.JanbaneryAndroidUtils
 import pl.project13.kanbanery.fragment.ColumnFragment
@@ -27,7 +27,7 @@ class BoardActivity extends ScalaSherlockActivity
 
 //  lazy val PageIndicator = findView(TR.page_indicator)
   lazy val ColumnsContainer = findView(TR.columns_container)
-  lazy val VisibleColumnsIndicator = findView(TR.page_indicator)
+  lazy val VisibleColumnsIndicator = findView(TR.visible_columns_indicator)
 
   val ContentView = TR.layout.board
 
@@ -90,6 +90,9 @@ class BoardActivity extends ScalaSherlockActivity
     }
   }
 
+  override def onOptionsItemSelected(item: MenuItem) = {
+    super.onOptionsItemSelected(item)
+  }
 
   protected override def onDestroy() {
     super.onDestroy()

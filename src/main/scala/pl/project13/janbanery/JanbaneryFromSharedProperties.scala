@@ -2,12 +2,15 @@ package pl.project13.janbanery
 
 import _root_.android.content.Context
 import android.rest.AndroidCompatibleRestClient
+import core.rest.response.RestClientResponse
 import core.{JanbaneryFactory, Janbanery}
 import pl.project13.kanbanery.util.KanbaneryPreferences
+import java.lang.reflect.Type
+import java.util.concurrent.Callable
 
 object JanbaneryFromSharedProperties {
 
-  def newRestClient = new AndroidCompatibleRestClient
+  def newRestClient = new AndroidCompatibleRestClient with Caching
 
   def getUsingApiKey()(implicit ctx: Context): Janbanery = KanbaneryPreferences.apiKey match {
     case Some(apiKey) =>

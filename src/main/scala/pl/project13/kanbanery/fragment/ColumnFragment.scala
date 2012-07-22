@@ -10,7 +10,7 @@ import pl.project13.janbanery.core.Janbanery
 import pl.project13.scala.android.util._
 import pl.project13.janbanery.resources.{TaskType, Task, User, Column}
 import pl.project13.kanbanery.R
-import pl.project13.kanbanery.activity.TaskAdapter
+import pl.project13.kanbanery.adapter.TaskArrayAdapter
 import collection.JavaConversions._
 import android.graphics.drawable.Drawable
 import pl.project13.scala.android.thread.ThreadingHelpers
@@ -88,11 +88,8 @@ class ColumnFragment(
       val tasksWithOwners = data._1
       val taskTypes = data._2
 
-      val columnName = columnView.find[TextView](R.id.column_label)
-      columnName := mkName(column, tasksWithOwners.size)
-
       val tasksListView = columnView.find[ListView](R.id.tasks)
-      tasksListView.setAdapter(new TaskAdapter(getActivity, tasksWithOwners, taskTypes))
+      tasksListView.setAdapter(new TaskArrayAdapter(getActivity, tasksWithOwners, taskTypes))
 
       columnView setLayoutParams new LayoutParams(KanbaneryBoardView.widthOfOneColumn(columns), ViewGroup.LayoutParams.FILL_PARENT)
 
@@ -103,19 +100,8 @@ class ColumnFragment(
   override def onSaveInstanceState(out: Bundle) {
     super.onSaveInstanceState(out)
 
-    saveInstanceStateLong(out)(KeyColumnId, _column.getId)
+    saveInstanceStateLong(out)(KeyColumnId, column.getId)
     saveInstanceStateInt(out)(KeyColumns, columns)
-  }
-
-
-  def mkName(column: Column, taskCount: Int): String = {
-    import column._
-    val limit = Option(getCapacity) match {
-      case Some(cap) => " (" + taskCount + " / " + cap + ")"
-      case _ => ""
-    }
-
-    getName + limit
   }
 
 }

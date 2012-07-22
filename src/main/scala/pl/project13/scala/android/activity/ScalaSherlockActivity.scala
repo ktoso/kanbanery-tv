@@ -2,18 +2,20 @@ package pl.project13.scala.android.activity
 
 import pl.project13.scala.android.thread.ThreadingHelpers
 import pl.project13.scala.android.util.{ThisDevice, Logging, ViewListenerConversions}
-import pl.project13.kanbanery.TypedActivity
+import pl.project13.kanbanery.{R, TypedActivity}
 import com.actionbarsherlock.app.{SherlockFragmentActivity, SherlockActivity}
 import pl.project13.scala.android.toast.ScalaToasts
 import com.actionbarsherlock.internal
 import android.os.Bundle
-import com.actionbarsherlock.view.Window
+import com.actionbarsherlock.view.{ActionMode, Menu, MenuItem, Window}
 import pl.project13.kanbanery.activity.{BoardPhoneActivity, BoardActivity}
 import pl.project13.kanbanery.util.Intents.BoardActivity
+import pl.project13.scala.android.ui.actionbar.ActionItemIds
+import pl.project13.kanbanery.util.{KanbaneryPreferences, Intents}
 
-abstract class ScalaSherlockActivity extends SherlockFragmentActivity with KanbaneryActivity
-  with TypedActivity
-  with ImplicitContext with ScalaToasts
+abstract class ScalaSherlockActivity extends SherlockFragmentActivity with KanbaneryActivity with TypedActivity
+  with ImplicitContext
+  with ScalaToasts
   with ViewListenerConversions
   with ThreadingHelpers
   with Logging {
@@ -25,6 +27,44 @@ abstract class ScalaSherlockActivity extends SherlockFragmentActivity with Kanba
   override def onCreate(bundle: Bundle) {
     super.onCreate(bundle)
     initHomeAsUpButton()
+  }
+
+  override def onCreateOptionsMenu(menu: Menu): Boolean = {
+    //    menu.add("Save")
+    //      .setIcon(R.drawable.ic_compose)
+    //      .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM)
+
+    //    menu.add("Search")
+    //      .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT)
+
+    //    menu.add("Refresh")
+    //      .setIcon(R.drawable.ic_refresh)
+    //      .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT)
+
+    val subMenu = menu.addSubMenu("More")
+
+    val logoutMenuItem = subMenu.add(1, ActionItemIds.Logout, 1, R.string.logout)
+    logoutMenuItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
+    logoutMenuItem.getItemId
+
+    val subMenu1Item = subMenu.getItem
+    subMenu1Item.setIcon(R.drawable.abs__ic_menu_moreoverflow_normal_holo_dark)
+    subMenu1Item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT)
+
+
+    super.onCreateOptionsMenu(menu)
+  }
+
+  override def onOptionsItemSelected(item: MenuItem) = {
+    item.getItemId match {
+      case ActionItemIds.Logout =>
+        Intents.LoginActivity.logout()
+        finish()
+        true
+
+      case _ =>
+        super.onOptionsItemSelected(item)
+    }
   }
 
   def initHomeAsUpButton() {

@@ -1,4 +1,4 @@
-package pl.project13.kanbanery.activity
+package pl.project13.kanbanery.adapter
 
 import android.widget.{EditText, ImageView, TextView, ArrayAdapter}
 import android.view.{ViewGroup, View}
@@ -11,8 +11,10 @@ import android.graphics.drawable.Drawable
 import pl.project13.scala.android.util.{Logging, ViewListenerConversions, ViewConversions}
 import pl.project13.janbanery.util.{JanbaneryConversions, JanbaneryAndroidUtils}
 import pl.project13.kanbanery.util.Intents
+import pl.project13.scala.android.activity.ScalaSherlockActivity
+import pl.project13.scala.android.ui.actionbar.TaskEditActionMode
 
-class TaskAdapter(ctx: Context, tasks: Seq[(Task, User, Drawable)], taskTypes: List[TaskType])
+class TaskArrayAdapter(ctx: Context, tasks: Seq[(Task, User, Drawable)], taskTypes: List[TaskType])
   extends ArrayAdapter(ctx, R.layout.task, R.id.task_name, tasks)
   with ViewListenerConversions with JanbaneryConversions with Logging {
 
@@ -47,20 +49,20 @@ class TaskAdapter(ctx: Context, tasks: Seq[(Task, User, Drawable)], taskTypes: L
     val taskTypeId = task.getTaskTypeId
     val taskType = taskTypes.find(_.getId == taskTypeId)
 
-    taskType foreach { _.applyTo(taskTypeTextView) }
+    taskType foreach {
+      _.applyTo(taskTypeTextView)
+    }
   }
 
   def initTaskOnClickListener(taskView: View, taskData: TaskData) {
-    info("Initialize onClick listener for: [%s]", taskData._1.getTitle)
     taskView onClick {
-      info("Clicked on task: [%s]", taskData._1.getTitle)
       showTaskDetailsView(taskData)
     }
   }
 
   def initTaskOnLongClickListener(taskView: View, taskData: TaskData) {
     taskView onLongClick {
-      // todo show optionbox, or better actionbar awesomeness
+      ctx.asInstanceOf[ScalaSherlockActivity].startActionMode(new TaskEditActionMode(ctx))
       true
     }
   }

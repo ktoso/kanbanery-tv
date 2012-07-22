@@ -15,6 +15,7 @@ import pl.project13.janbanery.JanbaneryFromSharedProperties
 import pl.project13.janbanery.util.JanbaneryAndroidUtils
 import pl.project13.kanbanery.fragment.ColumnFragment
 import pl.project13.kanbanery.common.KanbaneryBoardView
+import pl.project13.kanbanery.adapter.ColumnFragmentPagerAdapter
 
 class BoardPhoneActivity extends ScalaSherlockActivity
   with ImplicitContext with ScalaToasts
@@ -26,23 +27,20 @@ class BoardPhoneActivity extends ScalaSherlockActivity
   lazy val Inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE).asInstanceOf[LayoutInflater]
 
   lazy val PageIndicator = findView(TR.page_indicator)
-  lazy val ColumnsContainer = findView(TR.columns_container)
+  lazy val ColumnsPager = findView(TR.columns_pager)
 
-  val ContentView = TR.layout.board
+  val ContentView = TR.layout.board_phone
 
   lazy val janbanery = JanbaneryFromSharedProperties.getUsingApiKey()
 
   override def onCreate(bundle: Bundle) {
     requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY)
-//    requestWindowFeature(Window.FEATURE_PROGRESS)
 
     super.onCreate(bundle)
 
     setContentView(ContentView.id)
     val color = new ColorDrawable(JanbaneryAndroidUtils.toAndroidColor("#aa000000"))
     getSupportActionBar.setBackgroundDrawable(color)
-
-    ColumnsContainer.setPadding(0, getSupportActionBar.getHeight, 0, 0) // todo doesnt work == 0
   }
 
   override def onResume() {
@@ -66,21 +64,14 @@ class BoardPhoneActivity extends ScalaSherlockActivity
       val allColumns = janbanery.columns.all().toList
 
       inUiThread {
-        ColumnsContainer.removeAllViews()
+        ColumnsPager.removeAllViews()
 
         allColumns foreach { column =>
-          val tx = getSupportFragmentManager.beginTransaction()
-          val columnFragment = ColumnFragment.newInstance(janbanery, column, allColumns.size)
-
-          //          val columnView = Inflater.inflate(R.layout.column, null)
-          //
-          //          val tasksListView = columnView.findViewById(R.id.tasks).asInstanceOf[ListView]
-          //          tasksListView.setAdapter(new TaskAdapter(this, tasksWithOwners))
-          //
-          //          ColumnsContainer.addView(columnView, widthOfOneColumn(allColumns.size), displayHeight)
-
-          tx.add(ColumnsContainer.getId, columnFragment, "column-" + column.getId)
-          tx.commit()
+          val fragmentManager = getSupportFragmentManager
+//          val columnFragment = ColumnFragment.newInstance(janbanery, column, allColumns.size)
+//
+          ColumnsPager.setAdapter(new ColumnFragmentPagerAdapter(janbanery, fragmentManager, allColumns))
+          PageIndicator.setViewPager(ColumnsPager)
         }
       }
     }
