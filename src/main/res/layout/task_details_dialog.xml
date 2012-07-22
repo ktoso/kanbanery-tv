@@ -1,131 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="horizontal"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
         >
-
-    <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent" android:id="@+id/linearLayout">
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/task_information"
-                android:id="@+id/textView" android:layout_gravity="left|center_vertical"/>
-
-        <TableLayout
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent" android:id="@+id/tableLayout"
-                android:layout_gravity="left|center_vertical">
-            <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent" android:id="@+id/tableRow">
-                <TextView android:text="@string/task_id"
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                        />
-                <TextView android:id="@+id/task_id"
-                          android:layout_height="wrap_content"
-                          android:layout_width="wrap_content"
-                        />
-            </TableRow>
-            <TableRow android:layout_width="fill_parent" android:layout_height="fill_parent"
-                      android:id="@+id/tableRow1">
-                <TextView android:text="@string/task_type" android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"/>
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/task_type"
-                        android:id="@+id/task_type" android:layout_column="1"/>
-            </TableRow>
-            <TableRow android:layout_width="fill_parent" android:layout_height="fill_parent"
-                      android:id="@+id/tableRow2">
-                <TextView android:text="@string/created_by" android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"/>
-                <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent" android:layout_column="1">
-                    <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/creator_image" android:layout_gravity="center_horizontal|bottom"/>
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Task Creator"
-                            android:id="@+id/creator_name" android:layout_gravity="center"/>
-                </LinearLayout>
-            </TableRow>
-            <TableRow android:layout_width="fill_parent" android:layout_height="fill_parent"
-                      android:id="@+id/tableRow3">
-                <TextView android:text="Estimate" android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"/>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="XL"
-                          android:id="@+id/estimate" android:layout_column="1"/>
-            </TableRow>
-            <TableRow android:layout_width="fill_parent" android:layout_height="fill_parent"
-                      android:id="@+id/tableRow4">
-                <TextView android:text="Priority" android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"/>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="high"
-                          android:id="@+id/priority" android:layout_column="1"/>
-            </TableRow>
-            <TableRow android:layout_width="fill_parent" android:layout_height="fill_parent"
-                      android:id="@+id/tableRow5">
-                <TextView android:text="Owner" android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"/>
-                <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent"
-                              android:layout_height="fill_parent" android:id="@+id/linearLayout2"
-                              android:layout_column="1">
-                    <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                               android:id="@+id/owner_image" android:layout_gravity="center_horizontal|bottom"/>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                              android:text="Task Owner" android:id="@+id/owner_name" android:layout_gravity="center"/>
-                </LinearLayout>
-            </TableRow>
-        </TableLayout>
-
-    </LinearLayout>
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" android:id="@+id/linearLayout3"
-            android:layout_gravity="center_horizontal|top">
-        <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/lorem_ipsum_long"
-                android:maxLines="5"
-                android:scrollbars="vertical"
-                android:focusable="true"
-                android:id="@+id/task_description" android:layout_gravity="left|center_vertical"/>
-        <TextView style="@android:style/TextAppearance.Medium" android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:text="Comments (0)"
-                  android:id="@+id/comments_with_count"/>
+            android:layout_height="wrap_content"
+            >
+
         <LinearLayout
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:id="@+id/linearLayout4">
-            <EditText
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/new_comment"
-                    android:id="@+id/new_comment_txt"/>
-            <Button
+                android:layout_height="wrap_content">
+            <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/new_comment"
-                    android:id="@+id/new_comment"/>
+                    android:text="@string/task_information"
+                    android:id="@+id/textView" android:layout_gravity="left|center_vertical"/>
+
+            <TableLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" android:id="@+id/tableLayout"
+                    android:layout_gravity="center_vertical">
+                <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent" android:id="@+id/tableRow">
+                    <TextView android:text="@string/task_id"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+
+                            />
+                    <TextView android:id="@+id/task_id"
+                              android:layout_height="wrap_content"
+                              android:layout_width="wrap_content"
+                            />
+                </TableRow>
+                <TableRow android:layout_width="fill_parent" android:layout_height="fill_parent"
+                          android:id="@+id/tableRow1">
+                    <TextView android:text="@string/task_type" android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"/>
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/task_type"
+                            android:id="@+id/task_type" android:layout_column="1"/>
+                </TableRow>
+                <TableRow android:layout_width="fill_parent" android:layout_height="fill_parent"
+                          android:id="@+id/tableRow2">
+                    <TextView android:text="@string/created_by" android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"/>
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent" android:layout_column="1">
+                        <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/creator_image" android:layout_gravity="center_horizontal|bottom"/>
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Task Creator"
+                                android:id="@+id/creator_name" android:layout_gravity="center"/>
+                    </LinearLayout>
+                </TableRow>
+                <TableRow android:layout_width="fill_parent" android:layout_height="fill_parent"
+                          android:id="@+id/tableRow3">
+                    <TextView android:text="Estimate" android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="XL"
+                              android:id="@+id/estimate" android:layout_column="1"/>
+                </TableRow>
+                <TableRow android:layout_width="fill_parent" android:layout_height="fill_parent"
+                          android:id="@+id/tableRow4">
+                    <TextView android:text="Priority" android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                              android:text="high"
+                              android:id="@+id/priority" android:layout_column="1"/>
+                </TableRow>
+                <TableRow android:layout_width="fill_parent" android:layout_height="fill_parent"
+                          android:id="@+id/tableRow5">
+                    <TextView android:text="Owner" android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"/>
+                    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent"
+                                  android:layout_height="fill_parent" android:id="@+id/linearLayout2"
+                                  android:layout_column="1">
+                        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                   android:id="@+id/owner_image" android:layout_gravity="center_horizontal|bottom"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                  android:text="Task Owner" android:id="@+id/owner_name"
+                                  android:layout_gravity="center"/>
+                    </LinearLayout>
+                </TableRow>
+            </TableLayout>
+
         </LinearLayout>
-        <ListView
+
+        <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:id="@+id/comments"/>
+                android:layout_height="wrap_content" android:id="@+id/linearLayout3"
+                android:layout_gravity="center_horizontal|top">
+
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lorem_ipsum_long"
+                    android:maxLines="5"
+                    android:scrollbars="vertical"
+                    android:focusable="true"
+                    android:id="@+id/task_description" android:layout_gravity="left|center_vertical"/>
+
+
+            <TextView style="@android:style/TextAppearance.Medium"
+                      android:layout_marginTop="10dp"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="@string/subtasks_zero"
+                      android:id="@+id/subtasks_with_count"/>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/new_subtask_container"
+                    android:layout_height="fill_parent">
+                <EditText
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/new_subtask"
+                        style="@android:style/TextAppearance.Small"
+                        android:singleLine="true"
+                        android:id="@+id/new_subtask_txt"/>
+                <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@android:style/TextAppearance.Small"
+                        android:textColor="@color/black_top_transparent"
+                        android:text="@string/add_subtask"
+                        android:id="@+id/new_subtask"/>
+            </LinearLayout>
+            <ListView
+                    android:id="@+id/subtasks"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    />
+        </LinearLayout>
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" android:id="@+id/linearLayout3"
+                android:layout_gravity="center_horizontal|top">
+
+            <TextView style="@android:style/TextAppearance.Medium"
+                      android:layout_marginTop="10dp"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="@string/zero_comments"
+                      android:id="@+id/comments_with_count"/>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent">
+                <EditText
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/new_comment"
+                        style="@android:style/TextAppearance.Small"
+                        android:singleLine="true"
+                        android:id="@+id/new_comment_txt"/>
+                <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@android:style/TextAppearance.Small"
+                        android:textColor="@color/black_top_transparent"
+                        android:text="@string/send_comment"
+                        android:id="@+id/new_comment"/>
+            </LinearLayout>
+            <ListView
+                    android:id="@+id/comments"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</ScrollView>

@@ -50,8 +50,12 @@ trait ThreadingHelpers extends RunnableConversions with Logging {
   }
 
   def inFutureWithProgressDialog(block: => Unit)(implicit ctx: Context, handler: Handler) {
+    inFutureWithProgressDialog("Loading...", block)(ctx, handler)
+  }
+
+  def inFutureWithProgressDialog(msg: String, block: => Unit)(implicit ctx: Context, handler: Handler) {
     val dialog = new ProgressDialog(ctx)
-    dialog.setMessage("Loading...")
+    dialog.setMessage(msg)
     dialog.show()
 
     new Thread({

@@ -1,9 +1,15 @@
 package pl.project13.janbanery.util
 
-import pl.project13.janbanery.resources.{Column, TaskType}
+import pl.project13.janbanery.resources.{SubTask, Comment, Column, TaskType}
 import android.widget.TextView
 
 trait JanbaneryConversions {
+
+  implicit def str2comment(s: String) = new Comment(s)
+  implicit def str2commentList(s: String) = List(new Comment(s))
+
+  implicit def str2subtask(s: String) = new SubTask(s)
+  implicit def str2subtaskList(s: String) = List(new SubTask(s))
 
   implicit def columnHasFancyName(column: Column) = new AndroidFriendlyColumn(column)
 

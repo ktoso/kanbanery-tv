@@ -49,5 +49,15 @@
     <string name="move_left">To left column</string>
     <string name="move_to_selected">To selected column</string>
     <string name="move_right">To right column</string>
+    <string name="send_comment">Add</string>
+    <string name="zero_comments">Comments (0)</string>
+    <string name="subtasks_zero">Subtasks (0)</string>
+    <string name="new_subtask">New subtask</string>
+    <string name="add_subtask">Add</string>
+
+    <string name="cannot_post_empty_comment">Can\'t add an empty comment!</string>
+    <string name="cannot_post_empty_subtask">Can\'t add an empty subtask!</string>
+    <string name="posting_comment">Adding comment…</string>
+    <string name="posting_subtask">Adding subtask…</string>
 
 </resources>
