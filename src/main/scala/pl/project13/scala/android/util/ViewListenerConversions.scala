@@ -12,6 +12,10 @@ trait ViewListenerConversions extends ViewConversions {
 
   // listeners
 
+  implicit def fun1_DialogInterfaceonClickListener(block: => Unit) = new DialogInterface.OnClickListener {
+    def onClick(p1: DialogInterface, p2: Int) { block }
+  }
+
   implicit def fun1_onClickListener(block: => Unit) = new OnClickListener {
     def onClick(p1: View) { block }
   }

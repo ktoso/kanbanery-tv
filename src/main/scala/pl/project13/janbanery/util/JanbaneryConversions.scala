@@ -1,15 +1,22 @@
 package pl.project13.janbanery.util
 
-import pl.project13.janbanery.resources.{SubTask, Comment, Column, TaskType}
+import pl.project13.janbanery.resources._
 import android.widget.TextView
+import scala.Some
 
 trait JanbaneryConversions {
+
+  implicit def user2androidFriendlyUser(u: User) = new AndroidFriendlyUser(u)
 
   implicit def str2comment(s: String) = new Comment(s)
   implicit def str2commentList(s: String) = List(new Comment(s))
 
   implicit def str2subtask(s: String) = new SubTask(s)
-  implicit def str2subtaskList(s: String) = List(new SubTask(s))
+  implicit def str2subtaskList(s: String) = {
+    val t = new SubTask(s)
+    t setCompleted false
+    List(t)
+  }
 
   implicit def columnHasFancyName(column: Column) = new AndroidFriendlyColumn(column)
 
@@ -33,6 +40,10 @@ trait JanbaneryConversions {
 
       column.getName + limit
     }
+  }
+
+  class AndroidFriendlyUser(user: User) {
+    def getDisplayName = user.getFirstName + " " + user.getLastName
   }
 
 }

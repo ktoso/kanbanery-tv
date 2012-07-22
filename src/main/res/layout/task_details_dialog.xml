@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:fillViewport="true"
         >
     <LinearLayout
             android:orientation="vertical"
@@ -140,8 +141,9 @@
                         android:text="@string/add_subtask"
                         android:id="@+id/new_subtask"/>
             </LinearLayout>
-            <ListView
+            <LinearLayout
                     android:id="@+id/subtasks"
+                    android:orientation="vertical"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     />
@@ -178,8 +180,9 @@
                         android:text="@string/send_comment"
                         android:id="@+id/new_comment"/>
             </LinearLayout>
-            <ListView
+            <LinearLayout
                     android:id="@+id/comments"
+                    android:orientation="vertical"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     />

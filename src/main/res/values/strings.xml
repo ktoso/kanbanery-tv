@@ -60,4 +60,10 @@
     <string name="posting_comment">Adding comment…</string>
     <string name="posting_subtask">Adding subtask…</string>
 
+    <string name="should_we_delete_subtask">Delete this subtask?</string>
+    <string name="should_we_delete_comment">Delete this comment?</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
 </resources>

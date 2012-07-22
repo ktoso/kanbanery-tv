@@ -11,6 +11,8 @@ import pl.project13.janbanery.util.JanbaneryConversions
 import pl.project13.scala.android.annotation.AssuresUiThread
 import android.widget.ArrayAdapter
 import pl.project13.scala.android.util.DisplayInformation
+import pl.project13.kanbanery.adapter.{CommentView, SubTaskView}
+import android.view.View
 
 class TaskDetailsDialogActivity extends ScalaActivity
   with JanbaneryConversions
@@ -44,10 +46,6 @@ class TaskDetailsDialogActivity extends ScalaActivity
 
   lazy val Estimate = findView(TR.estimate)
   lazy val TaskDescription = findView(TR.task_description)
-
-  // view state
-  var comments: List[Comment] = Nil
-  var subtasks: List[SubTask] = Nil
 
   override def onCreate(savedInstanceState: Bundle) {
     super.onCreate(savedInstanceState)
@@ -92,21 +90,20 @@ class TaskDetailsDialogActivity extends ScalaActivity
 
   @AssuresUiThread
   def renderComments(comments: List[Comment]) {
-    this.comments = comments
-
     inUiThread {
       CommentsTitleBar := "Comments (" + comments.size + ")"
-      Comments.setAdapter(new ArrayAdapter(this, R.layout.simple_list_item, R.id.simple_list_txt, comments))
+      Comments.removeAllViews()
+      comments foreach { comment => Comments.addView(CommentView.apply(janbanery, comment)) }
     }
   }
 
   @AssuresUiThread
   def renderSubTasks(subtasks: List[SubTask]) {
-    this.subtasks = subtasks
-
     inUiThread {
       SubTasksTitleBar := "Subtasks (" + subtasks.size + ")"
-      SubTasks.setAdapter(new ArrayAdapter(this, R.layout.simple_list_item, R.id.simple_list_txt, subtasks)) // todo make awesome adapter
+
+      SubTasks.removeAllViews()
+      subtasks foreach { sub => SubTasks.addView(SubTaskView.apply(janbanery, sub)) }
     }
   }
 
@@ -121,8 +118,9 @@ class TaskDetailsDialogActivity extends ScalaActivity
           janbanery.comments.of(task) create txt
         })
 
-        comments = txt :: comments
-        renderComments(comments)
+        NewCommentTxt := ""
+        // todo invalidate comments cache
+        loadComments()
     }
   }
 
@@ -137,8 +135,9 @@ class TaskDetailsDialogActivity extends ScalaActivity
           janbanery.subTasks.of(task) create txt
         })
 
-        subtasks = txt :: subtasks
-        renderSubTasks(subtasks)
+        NewSubTaskTxt := ""
+        // todo invalidate subtasks cache
+        loadSubtasks()
     }
   }
 
